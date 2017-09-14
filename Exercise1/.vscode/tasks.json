@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "1b",
+            "type": "shell",
+            "command": "python3 1b/1b.py"
+        },
+        {
+            "taskName": "1c",
+            "type": "shell",
+            "command": "python3 1c/1c.py"
+        },
+        {
+            "taskName": "1cSol",
+            "type": "shell",
+            "command": "python3 1c/1cSol.py"
+        },
+        {
+            "taskName": "1d",
+            "type": "shell",
+            "command": "python3 1d/1d.py"
+        },
+        {
+            "taskName": "1dSol",
+            "type": "shell",
+            "command": "python3 1d/1dSol.py"
+        }
+    ]
+}
