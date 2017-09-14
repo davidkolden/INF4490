@@ -1,11 +1,20 @@
 \documentclass{article}
-\date{today}
+\date{\today}
 \author{David Kolden}
 \title{Representations: mutations and recombinations}
 \begin{document}
    \maketitle
+   \tableofcontents
    \section{Binary}
    \subsection{Mutation}
-   
+   \begin{itemize}
+   \item Bit flips: Each bit have a probability to be flipped from 1 to 0 or opposite.
+   \item Low probability to flip bit will generate high fitness for all individuals, while high probabilities will generate high fitness for some individuals, but not all, because strong individuals are more likely to be mutated away.
+   \end{itemize}
    \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{One-point crossover:} with a genotype encoded with length \textbf{\emph{l}}, choose a random number \textbf{\emph{r}} that is in range [1, \emph{l} - 1]. The children are created by swapping the tails of the bits placed after the intersection of \emph{r}, thus creating creating two children each built up by one of their parents' head, and the other parent's tail.
+   \item \textbf{\textit{n}-point crossover:} The same as one-point crossover, but the bit string is split up with more sections, and the bits between these sections are swapped.
+   \item \textbf{Uniform crossover:} each bit is has a random chance to inherit a bit from one or the other parents.
+   \end{itemize}
 \end{document}
