@@ -8,8 +8,7 @@
    \section{Binary}
    \subsection{Mutation}
    \begin{itemize}
-   \item Bit flips: Each bit have a probability to be flipped from 1 to 0 or opposite.
-   \item Low probability to flip bit will generate high fitness for all individuals, while high probabilities will generate high fitness for some individuals, but not all, because strong individuals are more likely to be mutated away.
+   \item \textbf{Bit flips:} Each bit have a probability to be flipped from 1 to 0 or opposite. Low probability to flip bit will generate high fitness for all individuals, while high probabilities will generate high fitness for some individuals, but not all, because strong individuals are more likely to be mutated away.
    \end{itemize}
    \subsection{Recombination}
    \begin{itemize}
@@ -17,4 +16,26 @@
    \item \textbf{\textit{n}-point crossover:} The same as one-point crossover, but the bit string is split up with more sections, and the bits between these sections are swapped.
    \item \textbf{Uniform crossover:} each bit is has a random chance to inherit a bit from one or the other parents.
    \end{itemize}
+   \section{Integer}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Random resetting:} Each number have a probability of being replaced by a new, random number. Similar to the binary representation, but with integer number space instead of binary.
+   \item \textbf{Creep mutation:} Each number have a probability of being increased or decreased with a small, random value. 
+   \end{itemize}
+   \subsection{Recombination} Can use the same as for binary genotypes.
+   \section{Real valued or floating point representation}
+   \subsection{Mutation} 
+   The mutation methods from binary and integer genotypes cannot be used with floating point numbers without some adjustments. When mutating, a mutated gene is replaced with a random floating point number between an upper and lower limit. From this kind of mutations two mutation methods are made.
+   \begin{itemize}
+   \item \textbf{Uniform mutation:} the numbers that will replace the old ones are drawn uniformly from inside the limit mentioned above.
+   \item \textbf{Non-uniform mutation:} the numbers are drawn from within the range mentioned above, but a Gaussian distribution function with a mean value of 0 is applied to the results so that the probability is higher for generating small values and smaller for big ones. The $\sigma$ is controlling the distribution of the function and is also called the mutation step size.
+   \item \textbf{Self adapting mutation for real-valued representation:} $\sigma$ from the above point is evolving with the genotype. The user do not set this value.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Simple arithmetic recombination:} same as crossover recombination with binary genotypes.
+   \item \textbf{Single arithmetic recombination:} choose an anele \textit{k} in the child and set it to the mean of the aneles \textit{k} from the parents. The other values set like the point above.
+   \item \textbf{Whole arithmetic recombination:} the children are given aneles that is a weighted sum of the parents aneles.
+   \end{itemize}
 \end{document}
+
