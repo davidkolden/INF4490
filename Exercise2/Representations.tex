@@ -35,7 +35,39 @@
    \begin{itemize}
    \item \textbf{Simple arithmetic recombination:} same as crossover recombination with binary genotypes.
    \item \textbf{Single arithmetic recombination:} choose an anele \textit{k} in the child and set it to the mean of the aneles \textit{k} from the parents. The other values set like the point above.
-   \item \textbf{Whole arithmetic recombination:} the children are given aneles that is a weighted sum of the parents aneles.
+   \item \textbf{Whole arithmetic recombination:} the children are given aneles that are a weighted sum of the parents aneles.
+   \item \textbf{Blend crossover:} Children are constructed with a weighted sum, but the parameters of the weighting is a function of the aneles of the parents.
    \end{itemize}
+   \section{Permutations}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Swap mutation:} two aneles are selected at random and swapped.
+   \item \textbf{Insert mutation:} two aneles are chosen at random and then placed next to each other.
+   \item \textbf{Scramble mutation:} a subset of the genotype is scrambled.
+   \item \textbf{Inversion mutation:} a subset of the genotype is chosen and their order is reversed.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Partially mapped crossover:}
+   \begin{itemize}
+   \item A section from parent one is copied over to the child.
+   \item The first number of the section is noted, and we find the placement for this number in parent two. 
+   \item The number in this placement at parent two is placed at the same place in the child as the first number in the child is placed in parent two. If this placement is already occupied by another number in the child, we look at this number and look at parent two to see what placement this number has there. If this placement is vacant at the child, the number is placed there. Else we repeat this until we find a place for the number. Continue with this until all the numbers in the section from parent one and two are represented in the child. 
+   \item Last the remaining numbers from parent two are copied over to the child.  
+   \end{itemize}
+   \item \textbf{Edge crossover:} Write about this another time.
+   \item \textbf{Order crossover:} Write about this another time.
+   \item \textbf{Cycle crossover:} Write about this another time.
+   \end{itemize}
+   \section{Tree Representation}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Tree-based mutation:} Write about this another time.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Sub-tree recombination:} Write about this another time.
+   \end{itemize}
+
 \end{document}
 
