@@ -14,6 +14,107 @@
   <key for="edge" id="d10" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <data key="d0"/>
+    <node id="n0">
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.process">
+          <y:Geometry height="563.64" width="864.8844799999999" x="534.3465600000002" y="170.68000000000006"/>
+          <y:Fill color="#FF66004C" color2="#FF66004C" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="14" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="20.296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="355.4013671875" x="254.74155640624997" y="4.0">cycleXOver(parent1, parent2, child1, child2)</y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="false"/>
+          </y:StyleProperties>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.process">
+          <y:Geometry height="481.42719999999997" width="443.3344000000001" x="544.6216" y="212.49039999999928"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="14" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="460.3125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="404.55859375" x="19.387903125000093" y="10.557349999999985">generateCycles(parent1, parent2, listOfCycles){
+    nCycle = 0
+    pos = 0
+    counter = 0
+    aneleList = [0, sizeof(parent)]
+    while(counter &lt; n elements in parents)
+    {
+         //Start from beginning of parent1 and create cycles
+         //untill every element is included.
+         element = parent1[pos]
+         newElement = null
+         while(element != newElement)
+         {
+               aneleList[pos] = 1
+               newElement = parent2[pos]
+               counter += 1
+               pos = findElementInParent1[newElement]
+         }
+          listOfCycles[nCycle] = aneleList
+          nCycle += 1
+          for(i, all elements in aneList, ++i){
+               if aneleList[i] == 0
+                    pos = i
+                    break
+          aneleLIst = [0, sizeof(parent)]
+    }
+     return nCycles
+}<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n2">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.process">
+          <y:Geometry height="195.0" width="315.0" x="1072.5" y="292.5"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="171.625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="303.982421875" x="5.5087890625" y="11.6875">insertCycle(child1, parent1, listOfCycles[0])
+insertCycle(child2, parent2, listOfCycles[0])
+for(i = 1, i &lt; nCycles, ++i){
+     if i%2 !=0{
+          insertCycle(child1, parent2, listOfCycles[i])
+          insertCycle(child2, parent1, listOfCycles[i])
+     }
+     else{
+           insertCycle(child1, parent1, listOfCycles[i])
+           insertCycle(child2, parent2, listOfCycles[i])
+      }
+}<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <edge id="e0" source="n1" target="n2">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="-16.288800000000037" sy="240.74551562500028" tx="0.0" ty="0.0">
+            <y:Point x="750.0" y="720.0"/>
+            <y:Point x="1020.0" y="720.0"/>
+            <y:Point x="1019.343875" y="300.0"/>
+            <y:Point x="1020.0" y="210.0"/>
+            <y:Point x="1230.0" y="210.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
   </graph>
   <data key="d7">
     <y:Resources/>
