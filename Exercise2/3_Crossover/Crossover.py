@@ -82,11 +82,11 @@ class Crossover:
     def _copy_values_after_segment(self, parent, child):
         i = parent.segment_index[1] + 1
         i = self._get_next_free_position(child, i)
-        for j in range(parent.segment_index[1] + 1, len(parent.data)-1):
+        for j in range(parent.segment_index[1] + 1, len(parent.data)):
             if parent.data[j] not in child.data:
                 child.data[i] = parent.data[j]
                 i = self._get_next_free_position(child, i)
-        for k in range(0, parent.segment_index[1] + 1):
+        for k in range(0, (parent.segment_index[1] + 1)):
             if parent.data[k] not in child.data:
                 child.data[i] = parent.data[k]
                 i = self._get_next_free_position(child, i)
@@ -94,6 +94,8 @@ class Crossover:
 
     def _get_next_free_position(self, child, i):
         counter = 0
+        if i >= len(child.data):
+            i = 0
         while child.data[i] is not None and counter < len(child.data):
             i += 1
             counter += 1
@@ -135,9 +137,9 @@ class Crossover:
 
 if __name__ == '__main__':
 
-    parent1 = Genotype([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    parent1 = Genotype([2, 4, 7, 1, 3, 6, 8, 9, 5])
     parent1.set_segment(3, 6)
-    parent2 = Genotype([9, 3, 7, 8, 2, 6, 5, 1, 4])
+    parent2 = Genotype([5, 9, 8, 6, 2, 4, 1, 3, 7])
     parent1.set_segment(3, 6)
     crossover = Crossover()
     print("PMX:")
@@ -148,8 +150,10 @@ if __name__ == '__main__':
     print(" ")
 
     child1 = crossover.order_cross_over(parent1, parent2)
+    child2 = crossover.order_cross_over(parent2, parent1)
     print("Order crossover:")
     child1.print_data()
+    child2.print_data()
     print(" ")
 
     child1, child2 = crossover.cycle_cross_over(parent1, parent2)
