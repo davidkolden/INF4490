@@ -1,6 +1,7 @@
 import csv
 import sys
 import itertools
+# import timeit
 
 
 def exhaustive_search(perm_list, table):
@@ -25,7 +26,7 @@ if __name__ == '__main__':
     n_cities = int(sys.argv[2])
     total_cities = max_cities[:n_cities]
     permus = list(itertools.permutations(total_cities, n_cities))
-
+    print(len(permus))
     reader = csv.reader(f, delimiter=';')
     l = list(reader)
     names = l[0]
@@ -33,8 +34,9 @@ if __name__ == '__main__':
 
     winner_distance, winner_sequence = exhaustive_search(permus, l)
     print("Best distance: " + str(winner_distance))
+    print("Best sequence: " + str(winner_sequence))
     print("Best order of travel:", end=" ")
-    for i in winner_sequence:
-        print(names[i], end=" ")
+    for i, val in enumerate(winner_sequence):
+        print(names[val], end=" ")
     print(names[winner_sequence[0]])
     f.close()
