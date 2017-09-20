@@ -1,0 +1,9 @@
+REPRESENTATIONS:
+
+Binary:
+	Mutation:
+		- Bit flips: Each bit have a probability to be flipped from 1 to 0 or opposite.
+		- Low probability to flip bit will generate high fitness for all individuals, while high probablities will generate high fitness for some individuals, but not all, because strong individuals are more likely to be mutated away.
+	
+	Recombination:
+		- One point crossover: 
