@@ -4,16 +4,19 @@ import itertools
 import datetime
 import matplotlib.pyplot as plt
 
+def calcuate_total_distance(seg, table):
+    total = 0
+    for i, val in enumerate(seg[:(len(seg) - 1)]):
+        total += float(table[val][seg[i + 1]])
+    total += float(table[seg[len(seg) - 1]][seg[0]])
+    return total
 
 def exhaustive_search(perm_list, table):
     best_distance = 10000000
     best_order = []
 
     for seg in perm_list:
-        total = 0
-        for i, val in enumerate(seg[:(len(seg)-1)]):
-           total += float(table[val][seg[i + 1]])
-        total += float(table[seg[len(seg) - 1]][seg[0]])
+        total = calcuate_total_distance(seg, table)
         if total < best_distance:
             best_distance = total
             best_order = seg
