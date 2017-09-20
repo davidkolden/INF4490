@@ -1,0 +1,73 @@
+\documentclass{article}
+\date{\today}
+\author{David Kolden}
+\title{Representations: mutations and recombinations}
+\begin{document}
+   \maketitle
+   \tableofcontents
+   \section{Binary}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Bit flips:} Each bit have a probability to be flipped from 1 to 0 or opposite. Low probability to flip bit will generate high fitness for all individuals, while high probabilities will generate high fitness for some individuals, but not all, because strong individuals are more likely to be mutated away.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{One-point crossover:} with a genotype encoded with length \textbf{\emph{l}}, choose a random number \textbf{\emph{r}} that is in range [1, \emph{l} - 1]. The children are created by swapping the tails of the bits placed after the intersection of \emph{r}, thus creating creating two children each built up by one of their parents' head, and the other parent's tail.
+   \item \textbf{\textit{n}-point crossover:} The same as one-point crossover, but the bit string is split up with more sections, and the bits between these sections are swapped.
+   \item \textbf{Uniform crossover:} each bit is has a random chance to inherit a bit from one or the other parents.
+   \end{itemize}
+   \section{Integer}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Random resetting:} Each number have a probability of being replaced by a new, random number. Similar to the binary representation, but with integer number space instead of binary.
+   \item \textbf{Creep mutation:} Each number have a probability of being increased or decreased with a small, random value. 
+   \end{itemize}
+   \subsection{Recombination} Can use the same as for binary genotypes.
+   \section{Real valued or floating point representation}
+   \subsection{Mutation} 
+   The mutation methods from binary and integer genotypes cannot be used with floating point numbers without some adjustments. When mutating, a mutated gene is replaced with a random floating point number between an upper and lower limit. From this kind of mutations two mutation methods are made.
+   \begin{itemize}
+   \item \textbf{Uniform mutation:} the numbers that will replace the old ones are drawn uniformly from inside the limit mentioned above.
+   \item \textbf{Non-uniform mutation:} the numbers are drawn from within the range mentioned above, but a Gaussian distribution function with a mean value of 0 is applied to the results so that the probability is higher for generating small values and smaller for big ones. The $\sigma$ is controlling the distribution of the function and is also called the mutation step size.
+   \item \textbf{Self adapting mutation for real-valued representation:} $\sigma$ from the above point is evolving with the genotype. The user do not set this value.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Simple arithmetic recombination:} same as crossover recombination with binary genotypes.
+   \item \textbf{Single arithmetic recombination:} choose an anele \textit{k} in the child and set it to the mean of the aneles \textit{k} from the parents. The other values set like the point above.
+   \item \textbf{Whole arithmetic recombination:} the children are given aneles that are a weighted sum of the parents aneles.
+   \item \textbf{Blend crossover:} Children are constructed with a weighted sum, but the parameters of the weighting is a function of the aneles of the parents.
+   \end{itemize}
+   \section{Permutations}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Swap mutation:} two aneles are selected at random and swapped.
+   \item \textbf{Insert mutation:} two aneles are chosen at random and then placed next to each other.
+   \item \textbf{Scramble mutation:} a subset of the genotype is scrambled.
+   \item \textbf{Inversion mutation:} a subset of the genotype is chosen and their order is reversed.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Partially mapped crossover:}
+   \begin{itemize}
+   \item A section from parent one is copied over to the child.
+   \item The first number of the section is noted, and we find the placement for this number in parent two. 
+   \item The number in this placement at parent two is placed at the same place in the child as the first number in the child is placed in parent two. If this placement is already occupied by another number in the child, we look at this number and look at parent two to see what placement this number has there. If this placement is vacant at the child, the number is placed there. Else we repeat this until we find a place for the number. Continue with this until all the numbers in the section from parent one and two are represented in the child. 
+   \item Last the remaining numbers from parent two are copied over to the child.  
+   \end{itemize}
+   \item \textbf{Edge crossover:} Write about this another time.
+   \item \textbf{Order crossover:} Write about this another time.
+   \item \textbf{Cycle crossover:} Write about this another time.
+   \end{itemize}
+   \section{Tree Representation}
+   \subsection{Mutation}
+   \begin{itemize}
+   \item \textbf{Tree-based mutation:} Write about this another time.
+   \end{itemize}
+   \subsection{Recombination}
+   \begin{itemize}
+   \item \textbf{Sub-tree recombination:} Write about this another time.
+   \end{itemize}
+
+\end{document}
+
