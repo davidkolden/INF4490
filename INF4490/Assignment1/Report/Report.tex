@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{amsmath}
 
 \author{David Kolden, davidko}
 \title{Mandatory assignment 1: Traveling Salesman Problem}
@@ -57,16 +58,19 @@ Time spent[seconds]: [0.002037, 0.015967, 0.134317, 1.310069,
 13.964733]
 \end{lstlisting}
 
-The time used by the algorithm to find the best distance was measured. The time spent TSP for six, seven, eight, nine and ten cities is shown in the last two lines of the program output and in figure 1.
+The time used by the algorithm to find the best distance was measured. The time spent on solving TSP for six, seven, eight, nine and ten cities is shown in the last two lines of the program output and in figure 1.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=0.7]{"../Exhaustive.pdf}
+\includegraphics[scale=0.8]{"../Exhaustive.pdf}
 \caption{Time spent for the TSP algorithm}
 \end{center}
 \end{figure}
 
-Find shortest tour, measure time taken, see how time increases as more cities are added
+It can be seen that the time spent by the algorithm searching the TSP for \textit{n} cities is roughly the time spent on calculating with \textit{n-1} cities multiplied by \textit{n}. The time spent by the algorithm to search TSP for 24 cities can be calculated with
+\[
+	t_{10} \frac{24!}{10!} \approx 14s \cdot \frac{24!}{10!} \approx 2.4 \cdot 10^{18}
+\]
 
 
 \section{Hill Climbing}

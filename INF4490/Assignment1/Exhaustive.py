@@ -52,6 +52,8 @@ if __name__ == '__main__':
 
     fig = plt.figure("Exhaustive search")
     fig.suptitle("Time taken as function of how many cities visited")
+    plt.ylabel("[s]")
+    plt.xlabel("Number of cities")
     plt.plot(n, delta_t, 'ro')
     print("Time spent[seconds]:", end=" ")
     print(delta_t)
