@@ -1,7 +1,5 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {2}Exhaustive search}{1}
-\contentsline {subsection}{\numberline {2.1}Tour of six cities}{1}
-\contentsline {subsection}{\numberline {2.2}Tour of ten cities}{1}
-\contentsline {section}{\numberline {3}Hill Climbing}{2}
-\contentsline {section}{\numberline {4}Genetic algorithm}{2}
-\contentsline {section}{\numberline {5}Hybrid algorithm}{2}
+\contentsline {section}{\numberline {3}Hill Climbing}{3}
+\contentsline {section}{\numberline {4}Genetic algorithm}{3}
+\contentsline {section}{\numberline {5}Hybrid algorithm}{3}

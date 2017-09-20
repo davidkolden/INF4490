@@ -1,16 +1,74 @@
 \documentclass{article}
+
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float}
+
 \author{David Kolden, davidko}
 \title{Mandatory assignment 1: Traveling Salesman Problem}
+
 \begin{document}
+
 \maketitle
 \tableofcontents
+
 \section{Introduction}
 Brief explanation of the assignment, how to start the programs
 \section{Exhaustive search}
-\subsection{Tour of six cities}
+
+Start the program with
+\begin{lstlisting}[language=bash]
+	$ python3 Exhaustive.py european_cities.csv 
+\end{lstlisting}
+The program will find the shortest tour between 6 - 10 cities. The program outputs
+
+\begin{lstlisting}[language=bash]
+For n_cities = 6:
+Best distance: 5018.8099999999995
+Best sequence: (0, 1, 4, 5, 2, 3)
+Best order of travel: Barcelona Belgrade Bucharest Budapest Berlin 
+Brussels Barcelona
+ 
+For n_cities = 7:
+Best distance: 5487.889999999999
+Best sequence: (2, 6, 3, 0, 1, 4, 5)
+Best order of travel: Berlin Copenhagen Brussels Barcelona Belgrade 
+Bucharest Budapest Berlin
+ 
+For n_cities = 8:
+Best distance: 6667.489999999999
+Best sequence: (3, 7, 0, 1, 4, 5, 2, 6)
+Best order of travel: Brussels Dublin Barcelona Belgrade Bucharest 
+Budapest Berlin Copenhagen Brussels
+ 
+For n_cities = 9:
+Best distance: 6678.549999999999
+Best sequence: (2, 6, 8, 3, 7, 0, 1, 4, 5)
+Best order of travel: Berlin Copenhagen Hamburg Brussels Dublin 
+Barcelona Belgrade Bucharest Budapest Berlin
+ 
+For n_cities = 10:
+Best distance: 7486.309999999999
+Best sequence: (6, 8, 3, 7, 0, 1, 9, 4, 5, 2)
+Best order of travel: Copenhagen Hamburg Brussels Dublin Barcelona 
+Belgrade Istanbul Bucharest Budapest Berlin Copenhagen
+	 
+Time spent[seconds]: [0.002037, 0.015967, 0.134317, 1.310069, 
+13.964733]
+\end{lstlisting}
+
+The time used by the algorithm to find the best distance was measured. The time spent TSP for six, seven, eight, nine and ten cities is shown in the last two lines of the program output and in figure 1.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"../Exhaustive.pdf}
+\caption{Time spent for the TSP algorithm}
+\end{center}
+\end{figure}
+
 Find shortest tour, measure time taken, see how time increases as more cities are added
-\subsection{Tour of ten cities}
-Find shortest tour, measure time taken, calculate time for 24 cities
+
+
 \section{Hill Climbing}
 Compare with exhaustive for 10 cities, run algorithm 20 times, report best worst mean and standard deviation for 10 runs and 24 runs
 \section{Genetic algorithm}
