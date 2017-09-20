@@ -1,8 +1,6 @@
 import numpy as np
 import sys
 import csv
-import matplotlib.pyplot as plt
-import datetime
 
 
 def calcuate_total_distance(seg, table):
@@ -36,7 +34,6 @@ def hill_climber_search(table, perm, iterations):
 
 
 if __name__ == '__main__':
-
 
     f = open(sys.argv[1], 'r')
     reader = csv.reader(f, delimiter=';')
@@ -78,7 +75,7 @@ if __name__ == '__main__':
 
     for i in range(20):
         permus = np.random.permutation(total_cities)
-        dist, order = hill_climber_search(l, permus, 10000)
+        dist, order = hill_climber_search(l, permus, 100000)
         distance_array.append(dist)
         if dist < best_dist:
             best_dist = dist
