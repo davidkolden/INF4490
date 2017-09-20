@@ -1,7 +1,8 @@
 import csv
 import sys
 import itertools
-# import timeit
+import datetime
+import matplotlib.pyplot as plt
 
 
 def exhaustive_search(perm_list, table):
@@ -21,22 +22,34 @@ def exhaustive_search(perm_list, table):
 
 if __name__ == '__main__':
     f = open(sys.argv[1], 'r')
-
-    max_cities = range(0, 24)
-    n_cities = int(sys.argv[2])
-    total_cities = max_cities[:n_cities]
-    permus = list(itertools.permutations(total_cities, n_cities))
-    print("Number of permutations: " + str(len(permus)))
     reader = csv.reader(f, delimiter=';')
     l = list(reader)
     names = l[0]
     l.pop(0)
 
-    winner_distance, winner_sequence = exhaustive_search(permus, l)
-    print("Best distance: " + str(winner_distance))
-    print("Best sequence: " + str(winner_sequence))
-    print("Best order of travel:", end=" ")
-    for i, val in enumerate(winner_sequence):
-        print(names[val], end=" ")
-    print(names[winner_sequence[0]])
+    max_cities = range(0, 24)
+    delta_t = []
+    n = range(6, 11)
+
+    for n_cities in range(6, 11):
+        total_cities = max_cities[:n_cities]
+        permus = list(itertools.permutations(total_cities, n_cities))
+        start_t = datetime.datetime.now()
+        winner_distance, winner_sequence = exhaustive_search(permus, l)
+        end_t = datetime.datetime.now()
+        total = end_t - start_t
+        delta_t.append(total.total_seconds())
+        print("For n_cities = " + str(n_cities) + ":")
+        print("Best distance: " + str(winner_distance))
+        print("Best sequence: " + str(winner_sequence))
+        print("Best order of travel:", end=" ")
+        for i, val in enumerate(winner_sequence):
+            print(names[val], end=" ")
+        print(names[winner_sequence[0]])
+
+    fig = plt.figure("Exhaustive search")
+    fig.suptitle("Time taken as function of how many cities visited")
+    plt.plot(n, delta_t, 'ro')
+    plt.savefig("Exhaustive.pdf", format="pdf")
+    # plt.show()
     f.close()
