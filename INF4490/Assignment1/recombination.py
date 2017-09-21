@@ -1,7 +1,6 @@
 class Genotype:
     def __init__(self, init_data):
         self.data = init_data
-        self._size = len(init_data)
 
     def set_segment(self, seg1, seg2):
         if seg1 > seg2:
@@ -13,8 +12,6 @@ class Genotype:
 
     def print_data(self):
         print(self.data)
-
-    _size = 0
 
     data = []
 
@@ -43,16 +40,16 @@ class Crossover:
     def cycle_cross_over(self, parent1, parent2):
         child1 = Genotype([None] * (len(parent1.data)))
         child2 = Genotype([None] * (len(parent1.data)))
-        listOfCycles = self._generate_cycles(parent1, parent2)
-        child1 = self._insert_cycle(child1, parent1, listOfCycles[0])
-        child2 = self._insert_cycle(child2, parent2, listOfCycles[0])
-        for i in range(1, len(listOfCycles)):
+        list_of_cycles = self._generate_cycles(parent1, parent2)
+        child1 = self._insert_cycle(child1, parent1, list_of_cycles[0])
+        child2 = self._insert_cycle(child2, parent2, list_of_cycles[0])
+        for i in range(1, len(list_of_cycles)):
             if i%2 != 0:
-                child1 = self._insert_cycle(child1, parent2, listOfCycles[i])
-                child2 = self._insert_cycle(child2, parent1, listOfCycles[i])
+                child1 = self._insert_cycle(child1, parent2, list_of_cycles[i])
+                child2 = self._insert_cycle(child2, parent1, list_of_cycles[i])
             else:
-                child1 = self._insert_cycle(child1, parent1, listOfCycles[i])
-                child2 = self._insert_cycle(child2, parent2, listOfCycles[i])
+                child1 = self._insert_cycle(child1, parent1, list_of_cycles[i])
+                child2 = self._insert_cycle(child2, parent2, list_of_cycles[i])
         return child1, child2
 
 
@@ -113,7 +110,7 @@ class Crossover:
         while counter < len(parent1.data):
             element = parent1.data[pos]
             newElement = None
-            while element != newElement:
+            while element != newElement and counter < len(parent1.data):
                 anelelist[pos] = 1
                 totallist[pos] = 1
                 newElement = parent2.data[pos]
@@ -121,7 +118,7 @@ class Crossover:
                 pos = parent1.data.index(newElement)
             listOfCycles.append(anelelist)
             nCycle += 1
-            for i in range(0, len(totallist)-1):
+            for i in range(0, len(totallist)):
                 if totallist[i] is None:
                     pos = i
                     break
@@ -137,9 +134,9 @@ class Crossover:
 
 if __name__ == '__main__':
 
-    parent1 = Genotype([2, 4, 7, 1, 3, 6, 8, 9, 5])
+    parent1 = Genotype([4, 9, 8, 3, 0, 1, 6, 2, 7, 5])
     parent1.set_segment(3, 6)
-    parent2 = Genotype([5, 9, 8, 6, 2, 4, 1, 3, 7])
+    parent2 = Genotype([4, 9, 8, 7, 0, 1, 2, 6, 3, 5])
     parent1.set_segment(3, 6)
     crossover = Crossover()
     print("PMX:")

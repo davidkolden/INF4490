@@ -4,27 +4,27 @@ import exhaustive
 import itertools
 import sys
 import csv
+import matplotlib.pyplot as plt
 
 
-def mutate_inversion(permu, probability):
+def mutate_inversion(child, probability):
     if probability >= np.random.uniform(0.0, 1.0):
-        ind1 = np.random.random_integers(len(permu)-1)
-        ind2 = np.random.random_integers(len(permu)-1)
+        ind1 = np.random.random_integers(len(child)-1)
+        ind2 = np.random.random_integers(len(child)-1)
         while ind1 == ind2:
-            ind2 = np.random.random_integers(len(permu)-1)
+            ind2 = np.random.random_integers(len(child)-1)
         if ind1 > ind2:
-            permu[ind2:ind1+1] = reversed(permu[ind2:ind1+1])
+            child[ind2:ind1+1] = reversed(child[ind2:ind1+1])
         else:
-            permu[ind1:ind2+1] = reversed(permu[ind1:ind2+1])
+            child[ind1:ind2+1] = reversed(child[ind1:ind2+1])
 
 
 def parent_selector(parent_list, table, s):
-    list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
     pre_prob = (2-s)/len(parent_list)
     parent1 = []
     parent2 = []
     for i in range(0, len(parent_list)-1):
-        prob = pre_prob + (2*(len(parent_list)-1-i) * (s-1))/(len(parent_list)*(len(parent_list) - 1))
+        prob = pre_prob + (2 * (len(parent_list)-1-i) * (s-1))/(len(parent_list) * (len(parent_list) - 1))
         if prob >= np.random.uniform(0.0, 1.0):
             parent1 = parent_list[i]
             break
@@ -35,44 +35,173 @@ def parent_selector(parent_list, table, s):
             parent2 = parent_list[i]
             break
 
-    if not parent1 and not parent2:
+    if len(parent1) == 0 and len(parent2) == 0:
         parent1 = parent_list[len(parent_list) - 2]
         parent2 = parent_list[len(parent_list) - 1]
 
-    if not parent1:
+    if len(parent1) == 0:
         parent1 = parent_list[len(parent_list) - 1]
 
-    if not parent2:
+    if len(parent2) == 0:
         parent2 = parent_list[len(parent_list) - 1]
 
-    return parent1, parent2
+    return list(parent1), list(parent2)
 
-def survivor_selector(parent_list)
+def survivor_selector_genitor(parent_list, child1, child2):
+    parent_list[len(parent_list) - 1] = child1
+    parent_list[len(parent_list) - 2] = child2
 
-def genetic_algorithm(parent1, parent2):
-    pass
-    # Choose mutation and crossover operators
-    # Define and tune parameters
+
+def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
+    list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
+    best_individuals = []
+    for c in range(n_run):
+        parent1 = recomb.Genotype([])
+        parent2 = recomb.Genotype([])
+        child1 = recomb.Genotype([])
+        child2 = recomb.Genotype([])
+        parent1.data, parent2.data = parent_selector(parent_list, table, s)
+        crossover_algorithm = recomb.Crossover()
+        child1, child2 = crossover_algorithm.cycle_cross_over(parent1, parent2)
+        mutate_inversion(child1.data, mutation_prob)
+        mutate_inversion(child2.data, mutation_prob)
+        survivor_selector_genitor(parent_list, child1.data, child2.data)
+        list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
+        best_individuals.append(exhaustive.calcuate_total_distance(parent_list[0], table))
+
+    return best_individuals
+
+def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run):
+
+    best_distance = 1000000
+    worst_distance = 0
+    best_distance_array = []
+    best_individual_per_run = []
+
+    for n in range(0, n_rounds):
+        # create initial gene pool
+        gene_pool = []
+        for i in range(0, population_size):
+            gene_pool.append(np.random.permutation(total_cities))
+
+        # fetching the strongest individual every algorithm cycle
+        best_individual_per_run.append(genetic_algorithm(gene_pool, table, s, mutation_prob, n_run))
+
+        # getting the strongest individual of this algorithm round
+        tmp_individual = exhaustive.calcuate_total_distance(gene_pool[0], table)
+
+        if tmp_individual < best_distance:
+            best_distance = tmp_individual
+
+        if tmp_individual > worst_distance:
+            worst_distance = tmp_individual
+
+        best_distance_array.append(tmp_individual)
+
+
+    print(
+        "For search of " +
+        str(total_cities) +
+        " cities with population size " +
+        str(population_size) +
+        " and"
+        ": "
+    )
+    print("Best distance: " + str(best_distance))
+    print("Worst distance: " + str(worst_distance))
+    print("Average distance: " + str(np.mean(best_distance_array, dtype=np.float32)))
+    print("Standard deviation: " + str(np.std(best_distance_array, dtype=np.float32)))
+    print(" ")
+
+    return best_individual_per_run
 
 
 if __name__ == '__main__':
+    # open csv file and get the table of cities and distances
     f = open(sys.argv[1], 'r')
     reader = csv.reader(f, delimiter=';')
-    l = list(reader)
-    names = l[0]
-    l.pop(0)
-
-    permu = list(itertools.permutations([0, 1, 2, 3, 4], 5))
-    parent1, parent2 = parent_selector(permu, l, 1.9)
-
-    print("Parent1: distance: " + str(exhaustive.calcuate_total_distance(parent1, l)) + ", order: ", end=" ")
-    print(parent1)
-
-    print("Parent2: distance: " + str(exhaustive.calcuate_total_distance(parent2, l)) + ", order: ", end=" ")
-    print(parent2)
+    table = list(reader)
+    # store names in own list
+    names = table[0]
+    table.pop(0)
+    number_of_algorithm_runs = 500
 
 
-    # mutate_inversion(permu, 1.0)
+
+    fig = plt.figure("Genetic Algorithm")
+    fig.suptitle("Average fitness of best fit individual in each generation")
+    plt.ylabel("Distance")
+    plt.xlabel("n run")
+
+    best_distance_matrix = []
+    best_distance_matrix = run_algorithm(
+        total_cities=24,
+        population_size=10,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs
+    )
+
+    best_distance_average1 = []
+    for i in range(len(best_distance_matrix[0])):
+        sum = 0
+        for j in range(len(best_distance_matrix)):
+            sum += best_distance_matrix[j][i]
+
+        best_distance_average1.append(sum/len(best_distance_matrix))
+
+    best_distance_matrix = run_algorithm(
+        total_cities=24,
+        population_size=50,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs
+    )
+
+
+    best_distance_average2 = []
+    for i in range(len(best_distance_matrix[0])):
+        sum = 0
+        for j in range(len(best_distance_matrix)):
+            sum += best_distance_matrix[j][i]
+
+        best_distance_average2.append(sum / len(best_distance_matrix))
+
+    best_distance_matrix = run_algorithm(
+        total_cities=24,
+        population_size=100,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs
+    )
+
+    best_distance_average3 = []
+    for i in range(len(best_distance_matrix[0])):
+        sum = 0
+        for j in range(len(best_distance_matrix)):
+            sum += best_distance_matrix[j][i]
+
+        best_distance_average3.append(sum / len(best_distance_matrix))
+
+    plt.plot(range(number_of_algorithm_runs), best_distance_average1, 'b', label='Population size 10')
+    plt.plot(range(number_of_algorithm_runs), best_distance_average2, 'r', label='Population size 50')
+    plt.plot(range(number_of_algorithm_runs), best_distance_average3, 'g', label='Population size 100')
+
+
+    plt.legend()
+    if(len(sys.argv) > 2):
+        plt.savefig(sys.argv[2] + ".pdf", format="pdf")
+    f.close()
+
+
+
+
 
     # Choose three different values for population size
     # Report best, worst, average and standard deviation og 20 runs
