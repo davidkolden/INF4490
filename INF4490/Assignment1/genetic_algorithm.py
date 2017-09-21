@@ -1,10 +1,10 @@
 import recombination as recomb
 import numpy as np
 import exhaustive
-import itertools
 import sys
 import csv
 import matplotlib.pyplot as plt
+import datetime
 
 
 def mutate_inversion(child, probability):
@@ -56,11 +56,14 @@ def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
     list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
     best_individuals = []
     for c in range(n_run):
+
         parent1 = recomb.Genotype([])
         parent2 = recomb.Genotype([])
         child1 = recomb.Genotype([])
         child2 = recomb.Genotype([])
+
         parent1.data, parent2.data = parent_selector(parent_list, table, s)
+
         crossover_algorithm = recomb.Crossover()
         child1, child2 = crossover_algorithm.cycle_cross_over(parent1, parent2)
         mutate_inversion(child1.data, mutation_prob)
@@ -71,13 +74,15 @@ def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
 
     return best_individuals
 
-def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run):
+def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run, names):
 
     best_distance = 1000000
     worst_distance = 0
     best_distance_array = []
     best_individual_per_run = []
+    best_gene_pool = []
 
+    start = datetime.datetime.now()
     for n in range(0, n_rounds):
         # create initial gene pool
         gene_pool = []
@@ -92,25 +97,36 @@ def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, tab
 
         if tmp_individual < best_distance:
             best_distance = tmp_individual
+            best_gene_pool = gene_pool[0]
 
         if tmp_individual > worst_distance:
             worst_distance = tmp_individual
 
         best_distance_array.append(tmp_individual)
 
-
+    end = datetime.datetime.now()
+    delta_t = end - start
+    time_taken = delta_t.microseconds/1000000 + delta_t.seconds
     print(
-        "For search of " +
+        "Search: " +
         str(total_cities) +
-        " cities with population size " +
+        " cities, population size: " +
         str(population_size) +
-        " and"
+        ", number of generations: " +
+        str(n_run) +
+        ", number of rounds: " +
+        str(n_rounds) +
         ": "
     )
     print("Best distance: " + str(best_distance))
     print("Worst distance: " + str(worst_distance))
     print("Average distance: " + str(np.mean(best_distance_array, dtype=np.float32)))
     print("Standard deviation: " + str(np.std(best_distance_array, dtype=np.float32)))
+    print("Time [seconds]: " + str(time_taken))
+    print("Best order of travel: ")
+    for k in range(len(gene_pool[0])-1):
+        print(names[gene_pool[0][k]], end=" ")
+    print(names[gene_pool[0][0]])
     print(" ")
 
     return best_individual_per_run
@@ -124,14 +140,14 @@ if __name__ == '__main__':
     # store names in own list
     names = table[0]
     table.pop(0)
-    number_of_algorithm_runs = 500
+    number_of_algorithm_runs = 2000
 
 
 
     fig = plt.figure("Genetic Algorithm")
     fig.suptitle("Average fitness of best fit individual in each generation")
     plt.ylabel("Distance")
-    plt.xlabel("n run")
+    plt.xlabel("Number of generations")
 
     best_distance_matrix = []
     best_distance_matrix = run_algorithm(
@@ -141,7 +157,8 @@ if __name__ == '__main__':
         s=1,
         mutation_prob=0.5,
         table=table,
-        n_run=number_of_algorithm_runs
+        n_run=number_of_algorithm_runs,
+        names=names
     )
 
     best_distance_average1 = []
@@ -159,7 +176,8 @@ if __name__ == '__main__':
         s=1,
         mutation_prob=0.5,
         table=table,
-        n_run=number_of_algorithm_runs
+        n_run=number_of_algorithm_runs,
+        names=names
     )
 
 
@@ -178,7 +196,41 @@ if __name__ == '__main__':
         s=1,
         mutation_prob=0.5,
         table=table,
-        n_run=number_of_algorithm_runs
+        n_run=number_of_algorithm_runs,
+        names=names
+    )
+
+    run_algorithm(
+        total_cities=10,
+        population_size=10,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names
+    )
+
+    run_algorithm(
+        total_cities=10,
+        population_size=50,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names
+    )
+
+    run_algorithm(
+        total_cities=10,
+        population_size=100,
+        n_rounds=20,
+        s=1,
+        mutation_prob=0.5,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names
     )
 
     best_distance_average3 = []
