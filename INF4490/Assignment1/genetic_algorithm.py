@@ -55,6 +55,7 @@ def survivor_selector_genitor(parent_list, child1, child2):
 def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
     list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
     best_individuals = []
+    crossover_algorithm = recomb.Crossover()
     for c in range(n_run):
 
         parent1 = recomb.Genotype([])
@@ -64,11 +65,13 @@ def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
 
         parent1.data, parent2.data = parent_selector(parent_list, table, s)
 
-        crossover_algorithm = recomb.Crossover()
         child1, child2 = crossover_algorithm.cycle_cross_over(parent1, parent2)
+
         mutate_inversion(child1.data, mutation_prob)
         mutate_inversion(child2.data, mutation_prob)
+
         survivor_selector_genitor(parent_list, child1.data, child2.data)
+
         list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
         best_individuals.append(exhaustive.calcuate_total_distance(parent_list[0], table))
 
@@ -140,25 +143,29 @@ if __name__ == '__main__':
     # store names in own list
     names = table[0]
     table.pop(0)
-    number_of_algorithm_runs = 2000
-
-
 
     fig = plt.figure("Genetic Algorithm")
     fig.suptitle("Average fitness of best fit individual in each generation")
     plt.ylabel("Distance")
     plt.xlabel("Number of generations")
 
+    total_cities = 24
+    population_size = 10
+    n_rounds = 20
+    s = 1
+    mutation_prob = 0.5
+    number_of_algorithm_runs = 500
+
     best_distance_matrix = []
     best_distance_matrix = run_algorithm(
-        total_cities=24,
-        population_size=10,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
         table=table,
         n_run=number_of_algorithm_runs,
-        names=names
+        names=names,
     )
 
     best_distance_average1 = []
@@ -167,19 +174,20 @@ if __name__ == '__main__':
         for j in range(len(best_distance_matrix)):
             sum += best_distance_matrix[j][i]
 
-        best_distance_average1.append(sum/len(best_distance_matrix))
+        best_distance_average1.append(sum / len(best_distance_matrix))
+
+        population_size = 50
 
     best_distance_matrix = run_algorithm(
-        total_cities=24,
-        population_size=50,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
         table=table,
         n_run=number_of_algorithm_runs,
-        names=names
+        names=names,
     )
-
 
     best_distance_average2 = []
     for i in range(len(best_distance_matrix[0])):
@@ -189,48 +197,17 @@ if __name__ == '__main__':
 
         best_distance_average2.append(sum / len(best_distance_matrix))
 
+        population_size = 100
+
     best_distance_matrix = run_algorithm(
-        total_cities=24,
-        population_size=100,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
         table=table,
         n_run=number_of_algorithm_runs,
-        names=names
-    )
-
-    run_algorithm(
-        total_cities=10,
-        population_size=10,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
-        table=table,
-        n_run=number_of_algorithm_runs,
-        names=names
-    )
-
-    run_algorithm(
-        total_cities=10,
-        population_size=50,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
-        table=table,
-        n_run=number_of_algorithm_runs,
-        names=names
-    )
-
-    run_algorithm(
-        total_cities=10,
-        population_size=100,
-        n_rounds=20,
-        s=1,
-        mutation_prob=0.5,
-        table=table,
-        n_run=number_of_algorithm_runs,
-        names=names
+        names=names,
     )
 
     best_distance_average3 = []
@@ -241,16 +218,52 @@ if __name__ == '__main__':
 
         best_distance_average3.append(sum / len(best_distance_matrix))
 
+    total_cities = 10
+    population_size = 10
+
+    run_algorithm(
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names,
+    )
+
+    population_size = 50
+
+    run_algorithm(
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names,
+    )
+
+    run_algorithm(
+        total_cities=total_cities,
+        population_size=population_size,
+        n_rounds=n_rounds,
+        s=s,
+        mutation_prob=mutation_prob,
+        table=table,
+        n_run=number_of_algorithm_runs,
+        names=names,
+    )
+
     plt.plot(range(number_of_algorithm_runs), best_distance_average1, 'b', label='Population size 10')
     plt.plot(range(number_of_algorithm_runs), best_distance_average2, 'r', label='Population size 50')
     plt.plot(range(number_of_algorithm_runs), best_distance_average3, 'g', label='Population size 100')
 
-
     plt.legend()
-    if(len(sys.argv) > 2):
+    if (len(sys.argv) > 2):
         plt.savefig(sys.argv[2] + ".pdf", format="pdf")
     f.close()
-
 
 
 
