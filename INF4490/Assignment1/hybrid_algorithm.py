@@ -50,10 +50,11 @@ def hybridize(parent_list, learning_model, table, n_hill_climber_searches):
 
     if learning_model == LearningModel.LAMARCKIAN:
         # replacing the pre search value with the new one
+
         for i in range(len(parent_list)):
             unused, parent_list[i] = hill_climber.hill_climber_search(table, parent_list[i], n_hill_climber_searches)
 
-        list.sort(parent_list, key=lambda seg: hill_climber.calcuate_total_distance(seg, table))
+        list.sort(parent_list, key=lambda seg: hill_climber.calculate_total_distance(seg, table))
 
         return parent_list
 
@@ -61,48 +62,68 @@ def hybridize(parent_list, learning_model, table, n_hill_climber_searches):
         # sorting with respect to the new value found, but using the values from pre search
 
         distance_list = []
+
         for i in range(len(parent_list)):
             distance, unused = hill_climber.hill_climber_search(table, parent_list[i], n_hill_climber_searches)
             distance_list.append(distance)
 
-        # print("Before: distance_list: ", end=" ")
-        # print(distance_list)
-        # print("Before: parent_list: ", end=" ")
-        # print(parent_list)
+        # sort parent_list based on values in distance_list
         parent_list = [x for _,x in sorted(zip(distance_list, parent_list))]
-        # print("After: parent_list: ", end=" ")
-        # print(parent_list)
 
         return parent_list
 
 
-def hybrid_algorithm(parent_list, table, s, mutation_prob, n_run, learning_model, n_hill_climber_searches):
-    parent_list = hybridize(parent_list, learning_model, table, n_hill_climber_searches)
+def hybrid_algorithm(parent_list,
+                     table,
+                     s,
+                     mutation_prob,
+                     n_run,
+                     learning_model,
+                     n_hill_climber_searches,
+                     n_children
+                     ):
+
+    parent_list = (hybridize(parent_list, learning_model, table, n_hill_climber_searches))
     best_individuals = []
     crossover_algorithm = recomb.Crossover()
+
     for c in range(n_run):
-        parent1 = recomb.Genotype([])
-        parent2 = recomb.Genotype([])
-        child1 = recomb.Genotype([])
-        child2 = recomb.Genotype([])
 
-        parent1.data, parent2.data = genetic_algorithm.parent_selector(parent_list, table, s)
+        children = []
+        for i in range(n_children):
+            children.append(recomb.Genotype([]))
 
-        child1, child2 = crossover_algorithm.cycle_cross_over(parent1, parent2)
+        for i in range(0, n_children, 2):
+            parent1 = recomb.Genotype([])
+            parent2 = recomb.Genotype([])
+            parent1.data, parent2.data = genetic_algorithm.parent_selector(parent_list, table, s)
+            children[i], children[i + 1] = crossover_algorithm.cycle_cross_over(parent1, parent2)
+            genetic_algorithm.mutate_inversion(children[i].data, mutation_prob)
+            genetic_algorithm.mutate_inversion(children[i + 1].data, mutation_prob)
 
-        genetic_algorithm.mutate_inversion(child1.data, mutation_prob)
-        genetic_algorithm.mutate_inversion(child2.data, mutation_prob)
+        genetic_algorithm.survivor_selector_genitor(parent_list, children)
 
-        genetic_algorithm.survivor_selector_genitor(parent_list, child1.data, child2.data)
-
-        parent_list = hybridize(parent_list, learning_model, table, n_hill_climber_searches)
+        list.sort(parent_list, key=lambda seg: hill_climber.calculate_total_distance(seg, table))
 
         best_individuals.append(calcuate_total_distance(parent_list[0], table))
 
-    return best_individuals
+        parent_list = hybridize(parent_list, learning_model, table, n_hill_climber_searches)
+
+    return best_individuals, parent_list
 
 
-def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run, names, learning_model, n_hill_climber_searches):
+def run_algorithm(total_cities,
+                  population_size,
+                  n_rounds,
+                  s,
+                  mutation_prob,
+                  table,
+                  n_run,
+                  names,
+                  learning_model,
+                  n_hill_climber_searches,
+                  n_children
+                  ):
 
     best_distance = 1000000
     worst_distance = 0
@@ -117,10 +138,11 @@ def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, tab
             gene_pool.append(list(np.random.permutation(total_cities)))
 
         # fetching the strongest individual every algorithm cycle
-        best_individual_per_run.append(hybrid_algorithm(gene_pool, table, s, mutation_prob, n_run, learning_model, n_hill_climber_searches))
+        best_individual, gene_pool = hybrid_algorithm(gene_pool, table, s, mutation_prob, n_run, learning_model, n_hill_climber_searches, n_children)
+        best_individual_per_run.append(best_individual)
 
         # getting the strongest individual of this algorithm round
-        tmp_individual = hill_climber.calcuate_total_distance(gene_pool[0], table)
+        tmp_individual = hill_climber.calculate_total_distance(gene_pool[0], table)
 
         if tmp_individual < best_distance:
             best_distance = tmp_individual
@@ -143,7 +165,9 @@ def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, tab
         str(n_run) +
         ", number of rounds: " +
         str(n_rounds) +
-        "number of hill climb iterations: " +
+        ", number of children: " +
+        str(n_children) +
+        ", number of hill climb iterations: " +
         str(n_hill_climber_searches) +
         ": "
     )
@@ -183,15 +207,9 @@ if __name__ == '__main__':
     mutation_prob = 0.5
     number_of_algorithm_runs = 500
     learning_model = LearningModel.BALDWINIAN
-    n_hill_climber_searches = 5
+    n_hill_climber_searches = 3
+    n_children = 4
 
-    # gene_pool = []
-    # for i in range(0, population_size):
-    #     gene_pool.append(list(np.random.permutation(total_cities)))
-    #
-    # gene_pool = hybridize(gene_pool, learning_model, table, n_hill_climber_searches)
-    #
-    # sys.exit()
 
     print("---- BALDWINIAN LEARNING MODEL ----")
 
@@ -206,7 +224,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average1 = []
@@ -229,7 +248,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average2 = []
@@ -252,7 +272,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average3 = []
@@ -276,7 +297,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     population_size = 50
@@ -291,7 +313,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     population_size = 100
@@ -306,7 +329,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     plt.plot(range(number_of_algorithm_runs), best_distance_average1, 'b', label='Population size 10')
@@ -315,7 +339,7 @@ if __name__ == '__main__':
 
     plt.legend()
     if (len(sys.argv) > 2):
-        plt.savefig(sys.argv[2] + "Baldwinian" + ".pdf", format="pdf")
+        plt.savefig(sys.argv[2] + "_baldwinian" + ".pdf", format="pdf")
 
     print("---- LAMARCKIAN LEARNING MODEL ----")
 
@@ -327,6 +351,7 @@ if __name__ == '__main__':
 
     learning_model = LearningModel.LAMARCKIAN
     total_cities = 24
+    population_size = 10
 
     best_distance_matrix = []
     best_distance_matrix = run_algorithm(
@@ -339,7 +364,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average1 = []
@@ -362,7 +388,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average2 = []
@@ -385,7 +412,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     best_distance_average3 = []
@@ -409,7 +437,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     population_size = 50
@@ -424,7 +453,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     population_size = 100
@@ -439,7 +469,8 @@ if __name__ == '__main__':
         n_run=number_of_algorithm_runs,
         names=names,
         learning_model=learning_model,
-        n_hill_climber_searches=n_hill_climber_searches
+        n_hill_climber_searches=n_hill_climber_searches,
+        n_children=n_children
     )
 
     plt.plot(range(number_of_algorithm_runs), best_distance_average1, 'b', label='Population size 10')
@@ -448,7 +479,7 @@ if __name__ == '__main__':
 
     plt.legend()
     if (len(sys.argv) > 2):
-        plt.savefig(sys.argv[2] + "_Lamarckian" + ".pdf", format="pdf")
+        plt.savefig(sys.argv[2] + "_lamarckian" + ".pdf", format="pdf")
 
     f.close()
 

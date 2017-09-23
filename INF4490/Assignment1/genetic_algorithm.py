@@ -47,60 +47,70 @@ def parent_selector(parent_list, table, s):
 
     return list(parent1), list(parent2)
 
-def survivor_selector_genitor(parent_list, child1, child2):
-    parent_list[len(parent_list) - 1] = child1
-    parent_list[len(parent_list) - 2] = child2
+
+def survivor_selector_genitor(parent_list, children):
+
+    length = len(children)
+    if(len(children) > len(parent_list)):
+        length = len(parent_list)
+
+    for n in range(length):
+        parent_list[len(parent_list) - 1 - n] = children[n].data
 
 
-def genetic_algorithm(parent_list, table, s, mutation_prob, n_run):
+
+def genetic_algorithm(parent_list, table, s, mutation_prob, n_run, n_children):
     list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
     best_individuals = []
     crossover_algorithm = recomb.Crossover()
+
     for c in range(n_run):
 
-        parent1 = recomb.Genotype([])
-        parent2 = recomb.Genotype([])
-        child1 = recomb.Genotype([])
-        child2 = recomb.Genotype([])
+        children = []
+        for i in range(n_children):
+            children.append(recomb.Genotype([]))
 
-        parent1.data, parent2.data = parent_selector(parent_list, table, s)
+        for i in range(0, n_children, 2):
+            parent1 = recomb.Genotype([])
+            parent2 = recomb.Genotype([])
+            parent1.data, parent2.data = parent_selector(parent_list, table, s)
+            children[i], children[i + 1] = crossover_algorithm.cycle_cross_over(parent1, parent2)
+            mutate_inversion(children[i].data, mutation_prob)
+            mutate_inversion(children[i+1].data, mutation_prob)
 
-        child1, child2 = crossover_algorithm.cycle_cross_over(parent1, parent2)
-
-        mutate_inversion(child1.data, mutation_prob)
-        mutate_inversion(child2.data, mutation_prob)
-
-        survivor_selector_genitor(parent_list, child1.data, child2.data)
+        survivor_selector_genitor(parent_list, children)
 
         list.sort(parent_list, key=lambda seg: exhaustive.calcuate_total_distance(seg, table))
+
         best_individuals.append(exhaustive.calcuate_total_distance(parent_list[0], table))
 
     return best_individuals
 
-def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run, names):
+def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, table, n_run, names, n_children):
 
     best_distance = 1000000
     worst_distance = 0
     best_distance_array = []
     best_individual_per_run = []
-    best_gene_pool = []
+
+    if n_children%2 != 0:
+        sys.exit(1)
 
     start = datetime.datetime.now()
     for n in range(0, n_rounds):
         # create initial gene pool
         gene_pool = []
         for i in range(0, population_size):
-            gene_pool.append(np.random.permutation(total_cities))
+            gene_pool.append(list(np.random.permutation(total_cities)))
 
         # fetching the strongest individual every algorithm cycle
-        best_individual_per_run.append(genetic_algorithm(gene_pool, table, s, mutation_prob, n_run))
+        best_individual_per_run.append(genetic_algorithm(gene_pool, table, s, mutation_prob, n_run, n_children))
 
         # getting the strongest individual of this algorithm round
         tmp_individual = exhaustive.calcuate_total_distance(gene_pool[0], table)
 
         if tmp_individual < best_distance:
             best_distance = tmp_individual
-            best_gene_pool = gene_pool[0]
 
         if tmp_individual > worst_distance:
             worst_distance = tmp_individual
@@ -119,6 +129,8 @@ def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, tab
         str(n_run) +
         ", number of rounds: " +
         str(n_rounds) +
+        ", number of children: " +
+        str(n_children) +
         ": "
     )
     print("Best distance: " + str(best_distance))
@@ -155,6 +167,7 @@ if __name__ == '__main__':
     s = 1
     mutation_prob = 0.5
     number_of_algorithm_runs = 500
+    n_children = 4
 
     best_distance_matrix = []
     best_distance_matrix = run_algorithm(
@@ -166,6 +179,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     best_distance_average1 = []
@@ -187,6 +201,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     best_distance_average2 = []
@@ -208,6 +223,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     best_distance_average3 = []
@@ -230,6 +246,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     population_size = 50
@@ -243,6 +260,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     run_algorithm(
@@ -254,6 +272,7 @@ if __name__ == '__main__':
         table=table,
         n_run=number_of_algorithm_runs,
         names=names,
+        n_children=n_children
     )
 
     plt.plot(range(number_of_algorithm_runs), best_distance_average1, 'b', label='Population size 10')

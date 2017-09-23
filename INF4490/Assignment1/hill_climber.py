@@ -4,7 +4,7 @@ import csv
 import copy
 
 
-def calcuate_total_distance(seg, table):
+def calculate_total_distance(seg, table):
     total = 0
     for i, val in enumerate(seg[:(len(seg) - 1)]):
         total += float(table[val][seg[i + 1]])
@@ -23,16 +23,19 @@ def swap_cities(perm):
 
 
 def hill_climber_search(table, perm, iterations):
-    best_distance = calcuate_total_distance(perm, table)
+
     best_order = copy.deepcopy(perm)
-    #print("Fitness before[in hill_climber_search]: " + str(best_distance))
+    best_distance = calculate_total_distance(best_order, table)
+
     for n in range(iterations):
+
         swap_cities(perm)
-        total = calcuate_total_distance(perm, table)
+        total = calculate_total_distance(perm, table)
+
         if total < best_distance:
             best_distance = total
             best_order = copy.deepcopy(perm)
-    #print("Fitness after[in hill_climber_search]: " + str(best_distance))
+
     return best_distance, best_order
 
 
