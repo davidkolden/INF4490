@@ -143,33 +143,39 @@ The program will try to find the shortest distance between 24 cities using the t
 \begin{lstlisting}[language=bash]
 	Search: 24 cities, population size: 10, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
-	Best distance: 12973.490000000002
-	Worst distance: 17104.000000000004
-	Average distance: 15060.7
-	Standard deviation: 1068.48
-	Time [seconds]: 3.821806
+	Best distance: 13340.920000000002
+	Worst distance: 17002.0
+	Average distance: 15437.6
+	Standard deviation: 851.065
+	Time [seconds]: 4.982695
 	Best order of travel: 
-	Istanbul Bucharest Belgrade Kiev Moscow Saint Petersburg Stockholm Warsaw 			Berlin Copenhagen Hamburg Prague Vienna Budapest Milan Paris Madrid 				Barcelona Dublin London Brussels Munich Rome Istanbul
+	Prague Berlin Warsaw Kiev Moscow Stockholm Saint Petersburg Hamburg Copenhagen 
+	Dublin London Brussels Paris Madrid Barcelona Rome Milan Munich Belgrade 
+	Istanbul Bucharest Sofia Budapest Vienna Prague
  
 	Search: 24 cities, population size: 50, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
-	Best distance: 15061.940000000002
-	Worst distance: 19732.84
-	Average distance: 17479.9
-	Standard deviation: 1168.88
-	Time [seconds]: 7.734567
+	Best distance: 15607.64
+	Worst distance: 19076.97
+	Average distance: 17500.1
+	Standard deviation: 839.583
+	Time [seconds]: 10.528968
 	Best order of travel: 
-	Budapest Vienna Paris Dublin London Hamburg Bucharest Istanbul Sofia Warsaw 		Berlin Copenhagen Stockholm Saint Petersburg Moscow Kiev Belgrade Madrid 			Rome Barcelona Milan Prague Brussels Budapest
+	Rome Milan Munich Budapest Prague Hamburg Copenhagen Stockholm Warsaw 
+	Sofia Istanbul Bucharest Kiev Moscow Saint Petersburg Vienna Belgrade 
+	Madrid Barcelona Paris Brussels Dublin London Berlin Rome
  
 	Search: 24 cities, population size: 100, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
-	Best distance: 17702.68
-	Worst distance: 20805.450000000004
-	Average distance: 19217.2
-	Standard deviation: 908.324
-	Time [seconds]: 13.321729
+	Best distance: 16469.68
+	Worst distance: 21342.51
+	Average distance: 19425.3
+	Standard deviation: 1086.04
+	Time [seconds]: 17.520685
 	Best order of travel: 
-	Brussels Paris Dublin Hamburg Stockholm Kiev Belgrade Munich Milan London 			Barcelona Madrid Rome Warsaw Vienna Prague Budapest Sofia Istanbul Bucharest 	Moscow Saint Petersburg Copenhagen Brussels
+	Budapest Kiev Moscow Stockholm Warsaw Saint Petersburg Prague Paris 
+	Dublin Munich Rome Bucharest Belgrade Vienna Berlin Hamburg Copenhagen 
+	Brussels London Milan Madrid Barcelona Sofia Istanbul Budapest
  
 	Search: 10 cities, population size: 10, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
@@ -177,29 +183,32 @@ The program will try to find the shortest distance between 24 cities using the t
 	Worst distance: 7503.1
 	Average distance: 7490.51
 	Standard deviation: 7.27028
-	Time [seconds]: 2.237474
+	Time [seconds]: 2.610346
 	Best order of travel: 
-	Belgrade Istanbul Bucharest Budapest Berlin Copenhagen Hamburg Brussels 			Dublin Belgrade
+	Brussels Hamburg Copenhagen Berlin Budapest Bucharest Istanbul Belgrade 
+	Barcelona Dublin Brussels
  
 	Search: 10 cities, population size: 50, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
-	Best distance: 7486.3099999999995
-	Worst distance: 7503.1
-	Average distance: 7490.51
-	Standard deviation: 7.27028
-	Time [seconds]: 4.680307
+	Best distance: 7486.309999999999
+	Worst distance: 7663.510000000001
+	Average distance: 7498.53
+	Standard deviation: 38.433
+	Time [seconds]: 6.380234
 	Best order of travel: 
-	Brussels Dublin Barcelona Belgrade Istanbul Bucharest Budapest Berlin 				Copenhagen Brussels
+	Hamburg Brussels Dublin Barcelona Belgrade Istanbul Bucharest Budapest 
+	Berlin Copenhagen Hamburg
  
 	Search: 10 cities, population size: 50, number of generations: 500, 
 	number of rounds: 20, number of children: 4: 
-	Best distance: 7486.3099999999995
-	Worst distance: 7503.099999999999
-	Average distance: 7487.15
-	Standard deviation: 3.6593
-	Time [seconds]: 4.920473
+	Best distance: 7486.309999999999
+	Worst distance: 7603.24
+	Average distance: 7501.36
+	Standard deviation: 34.5993
+	Time [seconds]: 6.684515
 	Best order of travel: 
-	Barcelona Belgrade Istanbul Bucharest Budapest Berlin Copenhagen Hamburg 			Brussels Barcelona
+	Belgrade Istanbul Bucharest Budapest Berlin Copenhagen Hamburg Brussels 
+	Dublin Barcelona Belgrade
 \end{lstlisting}
 \noindent
 A plot of the average fitness of the best individual of each generation can be seen in figure 2.
@@ -209,173 +218,196 @@ A plot of the average fitness of the best individual of each generation can be s
 \caption{Average fitness result for the genetic algorithm}
 \end{center}
 \end{figure}
+\noindent
 As shown in the plot and the output, the algorithm converges slower as population size increases. A reason for this might be because the survivor selection do not scale with the population size (\textit{n} = 4 for all population sizes). For this setup, the smaller population size (or the bigger ratio between \textit{n} and population size) gives the most effective and fruitful search.
 
-
-
+The genetic algorithm is run 500 times, generating 500 generations of data. When looking at how the results from running the genetic algorithm with 10 cities compares with exhaustive search and hill climber, we see that it finds the optimal solution from exhaustive search, but using far less iterations that the hill climber,
 \section{Hybrid algorithm}
-Use hill climber on each individual as part of the evaluation, report min max mean deviation and average fitness with both Lamarckian and Baldwinian learning models, Compare result with GA
-\subsection{Lamarckian learning model}
+The algorithm was made by modifying the genetic algorithm, adding a number of iterations of the hill climber to the parent selection. This was done by using the hill climber on every parent, then sorting the parents based on the new fitness values. For the Lamarckian learning model, the pre hill climb values were discarded and the new ones kept, while for the Baldwinian learning, the new fitness values were discarded amd the old ones kept. For this run I used hill climber with 3 iterations and the same population sizes as the genetic algorithm.
+
+Start the program with
 \begin{lstlisting}[language=bash]
----- LAMARCKIAN LEARNING MODEL ----
-Search: 24 cities, population size: 10, number of generations: 500, 
-number of rounds: 20, number of children: 4,number of hill climb iterations: 3: 
-Best distance: 12416.869999999999
-Worst distance: 14093.089999999998
-Average distance: 13252.1
-Standard deviation: 450.395
-Time [seconds]: 17.240872
-Best order of travel: 
-Bucharest Istanbul Sofia Belgrade Budapest Vienna Milan Rome Barcelona 
-Madrid Paris Brussels Munich Prague Berlin Hamburg London Dublin Copenhagen 
-Stockholm Saint Petersburg Moscow Kiev Bucharest
- 
-Search: 24 cities, population size: 50, number of generations: 500, 
-number of rounds: 20, number of children: 4, number of hill climb iterations: 3: 
-Best distance: 12325.93
-Worst distance: 13547.129999999997
-Average distance: 12939.1
-Standard deviation: 331.192
-Time [seconds]: 71.480543
-Best order of travel: 
-Dublin London Paris Brussels Hamburg Prague Vienna Budapest Belgrade Sofia 
-Istanbul Bucharest Berlin Copenhagen Stockholm Saint Petersburg Moscow Kiev 
-Warsaw Munich Milan Rome Barcelona Dublin
- 
-Search: 24 cities, population size: 100, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 12520.170000000002
-Worst distance: 13455.670000000002
-Average distance: 12983.2
-Standard deviation: 254.007
-Time [seconds]: 140.06269
-Best order of travel: 
-Copenhagen Stockholm Saint Petersburg Moscow Kiev Warsaw Budapest Bucharest 
-Istanbul Sofia Belgrade Vienna Munich Milan Rome Barcelona Madrid Dublin 
-London Paris Brussels Prague Berlin Copenhagen
- 
-Search: 10 cities, population size: 10, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 7486.309999999999
-Worst distance: 7486.31
-Average distance: 7486.31
-Standard deviation: 5.85938e-05
-Time [seconds]: 9.794478
-Best order of travel: 
-Istanbul Bucharest Budapest Berlin Copenhagen Hamburg Brussels Dublin Barcelona 
-Istanbul
- 
-Search: 10 cities, population size: 50, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 7486.309999999999
-Worst distance: 7486.3099999999995
-Average distance: 7486.31
-Standard deviation: 5.85938e-05
-Time [seconds]: 40.547498
-Best order of travel: 
-Brussels Dublin Barcelona Belgrade Istanbul Bucharest Budapest Berlin Copenhagen 
-Brussels
- 
-Search: 10 cities, population size: 100, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 7486.309999999999
-Worst distance: 7486.3099999999995
-Average distance: 7486.31
-Standard deviation: 5.85938e-05
-Time [seconds]: 79.250088
-Best order of travel: 
-Budapest Bucharest Istanbul Belgrade Barcelona Dublin Brussels Hamburg Copenhagen 
-Budapest
+	$ python3 hybrid_algorithm.py european_cities.csv 
 \end{lstlisting}
 
+\subsection{Lamarckian learning model}
+The part of the programming testing the Lamrarckian learning model outputs:
+\begin{lstlisting}[language=bash]
+	---- LAMARCKIAN LEARNING MODEL ----
+	Search: 24 cities, population size: 10, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 12384.219999999998
+	Worst distance: 14111.69
+	Average distance: 13115.3
+	Standard deviation: 501.122
+	Time [seconds]: 23.187871
+	Best order of travel: 
+	Moscow Saint Petersburg Stockholm Copenhagen Hamburg Dublin London Paris 
+	Brussels Munich Milan Madrid Barcelona Rome Sofia Istanbul Bucharest 
+	Belgrade Budapest Vienna Prague Berlin Warsaw Kiev Moscow
+ 
+	Search: 24 cities, population size: 50, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 12384.22
+	Worst distance: 13501.650000000001
+	Average distance: 12900.0
+	Standard deviation: 288.045
+	Time [seconds]: 99.415685
+	Best order of travel: 
+	Moscow Kiev Bucharest Istanbul Sofia Belgrade Rome Milan Barcelona Madrid 
+	Paris Dublin London Brussels Hamburg Copenhagen Stockholm Berlin Prague 
+	Munich Vienna Budapest Warsaw Saint Petersburg Moscow
+ 
+	Search: 24 cities, population size: 100, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 12325.930000000002
+	Worst distance: 13476.589999999998
+	Average distance: 12827.5
+	Standard deviation: 275.802
+	Time [seconds]: 199.236898
+	Best order of travel: 
+	Copenhagen Berlin Warsaw Stockholm Saint Petersburg Moscow Kiev Istanbul 
+	Bucharest Sofia Belgrade Budapest Vienna Prague Munich Milan Rome Barcelona 
+	Madrid Paris Brussels London Dublin Hamburg Copenhagen
+ 
+	Search: 10 cities, population size: 10, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 7486.3099999999995
+	Worst distance: 7503.099999999999
+	Average distance: 7488.83
+	Standard deviation: 5.99523
+	Best order of travel: 
+	Dublin Brussels Hamburg Copenhagen Berlin Budapest Bucharest Istanbul 
+	Belgrade Barcelona Dublin
+ 
+	Search: 10 cities, population size: 50, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 7486.309999999999
+	Worst distance: 7486.3099999999995
+	Average distance: 7486.31
+	Standard deviation: 5.85938e-05
+	Time [seconds]: 64.33309
+	Best order of travel: 
+	Hamburg Brussels Dublin Barcelona Belgrade Istanbul Bucharest Budapest 
+	Berlin Copenhagen Hamburg
+ 
+	Search: 10 cities, population size: 100, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 7486.309999999999
+	Worst distance: 7486.3099999999995
+	Average distance: 7486.31
+	Standard deviation: 5.85938e-05
+	Time [seconds]: 128.094541
+	Best order of travel: 
+	Istanbul Bucharest Budapest Berlin Copenhagen Hamburg Brussels Dublin 
+	Barcelona Belgrade Istanbul
+\end{lstlisting}
+\noindent
+A plot of the average fitness of the best individual of each generation can be seen in figure 3.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.8]{"../hybrid_algorithm_lamarckian.pdf}
 \caption{Average fitness result for the hybrid algorithm with a Lamarckian learning model}
 \end{center}
 \end{figure}
+\noindent
+As shown in the plot and the output, the algorithms converges faster than the genetic algorithm when using the same number of generations. The three populations converges approximately at the same speed. The standard deviation decreases as the population size increases.
 
 \subsection{Baldwinian learning model}
+The part of the programming testing the Baldwinian learning model outputs:
 \begin{lstlisting}[language=bash]
----- BALDWINIAN LEARNING MODEL ----
-Search: 24 cities, population size: 10, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 23569.699999999997
-Worst distance: 30698.32
-Average distance: 27057.8
-Standard deviation: 1698.52
-Time [seconds]: 19.73016
-Best order of travel: 
-Paris Sofia Istanbul Bucharest Warsaw Dublin Berlin Belgrade Moscow Kiev Saint 
-Petersburg Stockholm Vienna Milan Budapest London Brussels Copenhagen Madrid 
-Rome Munich Barcelona Hamburg Paris
+	---- BALDWINIAN LEARNING MODEL ----
+	Search: 24 cities, population size: 10, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 24573.85
+	Worst distance: 33081.719999999994
+	Average distance: 28469.5
+	Standard deviation: 2413.0
+	Time [seconds]: 28.799268
+	Best order of travel: 
+	Bucharest Istanbul Rome Dublin London Berlin Milan Prague Copenhagen 
+	Warsaw Saint Petersburg Kiev Moscow Stockholm Vienna Brussels Paris 
+	Munich Belgrade Sofia Barcelona Budapest Hamburg Madrid Bucharest
  
-Search: 24 cities, population size: 50, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 23313.62
-Worst distance: 33411.56
-Average distance: 27435.2
-Standard deviation: 2288.74
-Time [seconds]: 89.600072
-Best order of travel: 
-Vienna Belgrade Hamburg Copenhagen Stockholm Saint Petersburg Moscow Milan Kiev 
-Berlin Prague Brussels Sofia Barcelona Warsaw London Dublin Paris Budapest 
-Bucharest Istanbul Rome Madrid Vienna
+	Search: 24 cities, population size: 50, number of generations: 500, 
+	number of rounds: 20, number of children: 4,
+	number of hill climb iterations: 3: 
+	Best distance: 22539.57
+	Worst distance: 32637.84
+	Average distance: 27822.1
+	Standard deviation: 2372.2
+	Time [seconds]: 131.015888
+	Best order of travel: 
+	Hamburg Stockholm Warsaw Munich Milan Madrid Budapest Kiev Moscow 
+	Belgrade Istanbul Saint Petersburg London Berlin Sofia Vienna Rome 
+	Brussels Bucharest Paris Dublin Barcelona Prague Copenhagen Hamburg
  
-Search: 24 cities, population size: 100, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 24248.28
-Worst distance: 31721.629999999994
-Average distance: 27034.7
-Standard deviation: 2062.25
-Time [seconds]: 188.508705
-Best order of travel: 
-Hamburg Prague Saint Petersburg Moscow Belgrade Copenhagen Berlin Paris Brussels 
-Milan Vienna Warsaw Rome Dublin London Stockholm Budapest Istanbul Kiev Barcelona 
-Madrid Sofia Bucharest Hamburg
+	Search: 24 cities, population size: 100, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 24413.59
+	Worst distance: 31961.609999999993
+	Average distance: 26829.1
+	Standard deviation: 1923.99
+	Time [seconds]: 268.707197
+	Best order of travel: 
+	Milan Madrid Copenhagen Stockholm Sofia Istanbul Hamburg Paris Prague 
+	Berlin Saint Petersburg Moscow Warsaw Rome Vienna London Bucharest 
+	Budapest Kiev Belgrade Brussels Munich Barcelona Dublin Milan
  
-Search: 10 cities, population size: 10, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 8612.61
-Worst distance: 15709.300000000001
-Average distance: 11665.6
-Standard deviation: 2025.71
-Time [seconds]: 14.102291
-Best order of travel: 
-Budapest Belgrade Istanbul Barcelona Hamburg Brussels Copenhagen Dublin Berlin 
-Budapest
+	Search: 10 cities, population size: 10, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 8895.97
+	Worst distance: 14540.27
+	Average distance: 11162.9
+	Standard deviation: 1312.17
+	Time [seconds]: 16.562146
+	Best order of travel: 
+	Brussels Belgrade Istanbul Bucharest Dublin Barcelona Budapest Hamburg 
+	Copenhagen Berlin Brussels
  
-Search: 10 cities, population size: 50, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 8312.79
-Worst distance: 12810.14
-Average distance: 10222.6
-Standard deviation: 1503.26
-Time [seconds]: 51.040574
-Best order of travel: 
-Belgrade Bucharest Dublin Copenhagen Berlin Budapest Hamburg Brussels Barcelona 
-Belgrade
+	Search: 10 cities, population size: 50, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 8304.14
+	Worst distance: 14255.750000000002
+	Average distance: 10502.8
+	Standard deviation: 1614.64
+	Time [seconds]: 82.029157
+	Best order of travel: 
+	Brussels Dublin Barcelona Hamburg Istanbul Bucharest Belgrade Budapest 
+	Berlin Copenhagen Brussels
  
-Search: 10 cities, population size: 100, number of generations: 500, 
-number of rounds: 20, number of children: 4 number of hill climb iterations: 3: 
-Best distance: 8450.56
-Worst distance: 15331.689999999999
-Average distance: 11454.8
-Standard deviation: 1912.34
-Time [seconds]: 99.088864
-Best order of travel: 
-Bucharest Copenhagen Hamburg Berlin Brussels Dublin Budapest Barcelona Belgrade 
-Bucharest
+	Search: 10 cities, population size: 100, number of generations: 500, 
+	number of rounds: 20, number of children: 4, 
+	number of hill climb iterations: 3: 
+	Best distance: 8514.890000000001
+	Worst distance: 14829.510000000002
+	Average distance: 10811.2
+	Standard deviation: 2013.73
+	Time [seconds]: 159.45777
+	Best order of travel: 
+	Budapest Bucharest Dublin Belgrade Hamburg Istanbul Brussels Copenhagen 
+	Berlin Barcelona Budapest
 
 \end{lstlisting}
-
+\noindent
+A plot of the average fitness of the best individual of each generation can be seen in figure 4.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.8]{"../hybrid_algorithm_baldwinian.pdf}
 \caption{Average fitness result for the hybrid algorithm with a Baldwinian learning model}
 \end{center}
 \end{figure}
-
+As shown in the plot and output, the Baldwinian learning model fails
 \begin{thebibliography}{9}
 
 \bibitem{eiben}

@@ -139,7 +139,7 @@ def run_algorithm(total_cities, population_size, n_rounds, s, mutation_prob, tab
     print("Standard deviation: " + str(np.std(best_distance_array, dtype=np.float32)))
     print("Time [seconds]: " + str(time_taken))
     print("Best order of travel: ")
-    for k in range(len(gene_pool[0])-1):
+    for k in range(len(gene_pool[0])):
         print(names[gene_pool[0][k]], end=" ")
     print(names[gene_pool[0][0]])
     print(" ")
