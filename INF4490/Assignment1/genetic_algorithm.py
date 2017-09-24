@@ -164,7 +164,7 @@ if __name__ == '__main__':
     total_cities = 24
     population_size = 10
     n_rounds = 20
-    s = 1
+    s = 1.5
     mutation_prob = 0.5
     number_of_algorithm_runs = 500
     n_children = 4

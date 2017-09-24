@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import csv
 import copy
+import datetime
 
 
 def calculate_total_distance(seg, table):
@@ -54,21 +55,32 @@ if __name__ == '__main__':
     best_dist = 1000000;
     worst_dist = 0
     distance_array = []
+    rounds = 20
+    n_searches = 10000
+    algorithm_time = 0
 
-    for i in range(20):
+    for i in range(rounds):
         permus = np.random.permutation(total_cities)
+        start = datetime.datetime.now()
         dist, order = hill_climber_search(l, permus, 10000)
+        end = datetime.datetime.now()
+        time_delta = end - start
+        algorithm_time = time_delta.seconds + time_delta.microseconds/1000000
+
         distance_array.append(dist)
         if dist < best_dist:
             best_dist = dist
         if dist > worst_dist:
             worst_dist = dist
 
-    print("For 10 cities:")
+    print("For " + str(n) + " cities:")
+    print("Running the algorithm " + str(rounds) + " times")
+    print("Number of searches per round: " + str(n_searches))
     print("Best distance: " + str(best_dist))
     print("Worst distance: " + str(worst_dist))
     print("Average distance: " + str(np.mean(distance_array, dtype=np.float32)))
     print("Standard deviation: " + str(np.std(distance_array, dtype=np.float32)))
+    print("Time taken per search[seconds]: " + str(algorithm_time))
     print(" ")
 
     n = 24
@@ -81,15 +93,24 @@ if __name__ == '__main__':
 
     for i in range(20):
         permus = np.random.permutation(total_cities)
-        dist, order = hill_climber_search(l, permus, 100000)
+        start = datetime.datetime.now()
+        dist, order = hill_climber_search(l, permus, 1000000)
         distance_array.append(dist)
+        end = datetime.datetime.now()
+        time_delta = end - start
+        algorithm_time = time_delta.seconds + time_delta.microseconds / 1000000
+
         if dist < best_dist:
             best_dist = dist
         if dist > worst_dist:
             worst_dist = dist
 
-    print("For 24 cities:")
+    print("For " + str(n) + " cities:")
+    print("Running the algorithm " + str(rounds) + " times")
+    print("Number of searches per round: " + str(n_searches))
     print("Best distance: " + str(best_dist))
     print("Worst distance: " + str(worst_dist))
     print("Average distance: " + str(np.mean(distance_array, dtype=np.float32)))
     print("Standard deviation: " + str(np.std(distance_array, dtype=np.float32)))
+    print("Time taken per search[seconds]: " + str(algorithm_time))
+    print(" ")
