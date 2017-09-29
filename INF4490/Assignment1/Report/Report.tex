@@ -223,7 +223,7 @@ As shown in the plot and the output, the algorithm converges slower as populatio
 
 The genetic algorithm is run 500 times, generating 500 generations of data. When looking at how the results from running the genetic algorithm with 10 cities compares with exhaustive search and hill climber, we see that it finds the optimal solution from exhaustive search, but using far less iterations that the hill climber,
 \section{Hybrid algorithm}
-The algorithm was made by modifying the genetic algorithm, adding a number of iterations of the hill climber to the parent selection. This was done by using the hill climber on every parent, then sorting the parents based on the new fitness values. For the Lamarckian learning model, the pre hill climb values were discarded and the new ones kept, while for the Baldwinian learning, the new fitness values were discarded amd the old ones kept. For this run I used hill climber with 3 iterations and the same population sizes as the genetic algorithm.
+The algorithm was made by modifying the genetic algorithm, adding a number of iterations of the hill climber to the parent selection. This was done by using the hill climber on every parent, then sorting the parents based on the new fitness values. For the Lamarckian learning model, the pre hill climb values were discarded and the new ones kept, while for the Baldwinian learning, the new fitness values were discarded and the old ones kept. For this run I used hill climber with 3 iterations and the same population sizes as the genetic algorithm.
 
 Start the program with
 \begin{lstlisting}[language=bash]
@@ -317,7 +317,7 @@ A plot of the average fitness of the best individual of each generation can be s
 \end{center}
 \end{figure}
 \noindent
-As shown in the plot and the output, the algorithms converges faster than the genetic algorithm when using the same number of generations. The three populations converges approximately at the same speed. The standard deviation decreases as the population size increases.
+As shown in the plot and the output, the algorithms converges faster than the genetic algorithm when using the same number of generations. The three populations converges approximately at the same speed. The standard deviation decreases as the population size increases (or the ratio between new children and population size decreases).
 
 \subsection{Baldwinian learning model}
 The part of the programming testing the Baldwinian learning model outputs:
@@ -407,7 +407,9 @@ A plot of the average fitness of the best individual of each generation can be s
 \caption{Average fitness result for the hybrid algorithm with a Baldwinian learning model}
 \end{center}
 \end{figure}
-As shown in the plot and output, the Baldwinian learning model fails
+As shown in the plot and output, the Baldwinian learning model fails to do anything productive. Rather than finding an optimal solution, it seems to be computing random fitness values around a band. The reason for this might be because the survivor selector is strictly changing the weakest parents with the new children, and as the parents are sorted by their post-hill-climber search values, it creates a possibility for a stronger parent to be sorted out and replaced. It looks like the way the genetic algorithm is implemented fails to make use of the traits that are indirectly inherited through the Baldwinian learning model, and the hill climber search simply randomizes the population rather than strengthen it.
+
+To see if there were some logical bug in the code, I tried to run the algorithm with the number of hill climber searches set to zero. The output should then have similar characteristics as the genetic algorithm, which it had. The problem occurs when the hill climber is allowed to work on the parents.
 \begin{thebibliography}{9}
 
 \bibitem{eiben}
