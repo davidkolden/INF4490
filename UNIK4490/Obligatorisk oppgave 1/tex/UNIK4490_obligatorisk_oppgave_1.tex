@@ -14,7 +14,7 @@
 \section{Øvelse 1}
 
 \subsection{ }
-Finner poler ved å løse \(s(1 + T_Ms) = 0\) som gir polene \(s = 0\) og \(s = -\frac{1}{T_M}\). Systemet er stabilt
+Finner poler ved å løse \(s(1 + T_Ms) = 0\) som gir polene \(s = 0\) og \(s = -\frac{1}{T_M}\). Systemet er stabilt for alle positive verdier av \(T_M\).
 
 \subsection{ }
 Figur 1 viser blokkskjema for \(\frac{X(s)}{U(s)} = H(s) = \frac{1}{s(1 + T_Ms)}\)
@@ -52,6 +52,15 @@ Figur to viser blokkskjema for systemet med kontroller (\(H_C(s)\))
 
 mens nullpunktene finnes med uttrykket
 \[s = -\frac{1}{T_D}\]
+
+Ved å sette inn for \(T_M = 2\) og \(T_D = 1\) får vi til slutt et nullpunkt i \(s = -1\) og to poler i
+\[s = \frac{-(\frac{1}{K} + 1) \pm \sqrt{(\frac{1}{K} + 1)^2 - 4\frac{2}{K}}}{2\frac{2}{K}}\]
+
+Locusplot:
+\begin{figure}[!htb]
+\includegraphics[height=10cm]{illustrations/oppg1e_illu}
+\caption{Locusplot av \(H_C\)}
+\end{figure}
 
 \section{Øvelse 2}
 
