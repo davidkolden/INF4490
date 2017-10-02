@@ -56,13 +56,33 @@ mens nullpunktene finnes med uttrykket
 Ved å sette inn for \(T_M = 2\) og \(T_D = 1\) får vi til slutt et nullpunkt i \(s = -1\) og to poler i
 \[s = \frac{-(\frac{1}{K} + 1) \pm \sqrt{(\frac{1}{K} + 1)^2 - 4\frac{2}{K}}}{2\frac{2}{K}}\]
 
-Locusplot:
 \begin{figure}[!htb]
 \includegraphics[height=10cm]{illustrations/oppg1e_illu}
 \caption{Locusplot av \(H_C\)}
 \end{figure}
 
+Med \(K \approx 0.17\), så er systemet 
+
 \section{Øvelse 2}
+Et system kan verifiseres som stabilt for en kandidatfunksjon \(V(x,y)\) hvis
+\begin{itemize}
+\item \(V(x, y) > 0 \qquad \forall x \neq 0, y \neq 0\)
+\item \(V(x,y) = 0 \qquad x = y = 0\)
+\item \(V(x,y) \rightarrow \infty \qquad x \rightarrow \infty, y \rightarrow \infty\)
+\item \(\dot{V}(x,y) < 0 \)
+\end{itemize}
+Med en kandidatfunksjon \[V(x,y) = x^2 +  y^2\] ser vi at kravene fra første, andre og tredje punkt er godkjente ettersom begge uttrykkene er kvadratiske.
+
+Med systemet \[\dot{x} = -y-x^3\] \[\dot{y} = x - y^3\] kan systemet verifiseres ved å finne \(\dot{V}(x, y)\).
+
+\[\dot{V}(x,y) = 2x\dot{x} + 2y\dot{y}\]
+\[\dot{V}(x,y) = 2x(-y-x^3) + 2y(x-y^3)\]
+\[\dot{V}(x,y)=-2xy-2x^4 + 2xy-2y^4\]
+\[\dot{V}(x,y) = -x^4-y^4\]
+
+Vi ser at \(\dot{V}(x,y)\) er godkjent i forhold til det siste kravet ettersom \(x^4\) og \(y^4\) ikke kan bli negative.
+
+
 
 \section{Øvelse 3}
 \subsection{ }

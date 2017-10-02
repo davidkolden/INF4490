@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  2 OCT 2017 19:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  2 OCT 2017 21:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -516,34 +516,40 @@ Overfull \hbox (52.95857pt too wide) in paragraph at lines 45--46
 File: illustrations/oppg1e_illu.JPG Graphic file (type jpg)
 
 <use illustrations/oppg1e_illu.JPG>
-Package pdftex.def Info: illustrations/oppg1e_illu.JPG used on input line 61.
+Package pdftex.def Info: illustrations/oppg1e_illu.JPG used on input line 60.
 (pdftex.def)             Requested size: 349.33524pt x 284.52756pt.
 
-Overfull \hbox (4.33524pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.33524pt too wide) in paragraph at lines 60--61
 [][] 
  []
 
-[3 <./illustrations/oppg1e_illu.JPG>] [4]
-(./UNIK4490_obligatorisk_oppgave_1.aux) ) 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
+ [3 <./illustrations/oppg1e_illu.JPG>] [4] (./UNIK4490_obligatorisk_oppgave_1.a
+ux) ) 
 Here is how much of TeX's memory you used:
- 2346 strings out of 493013
- 31243 string characters out of 6135682
+ 2363 strings out of 493013
+ 31535 string characters out of 6135682
  98264 words of memory out of 5000000
- 5855 multiletter control sequences out of 15000+600000
+ 5869 multiletter control sequences out of 15000+600000
  7587 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,6n,25p,261b,227s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on UNIK4490_obligatorisk_oppgave_1.pdf (4 pages, 177365 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb>
+Output written on UNIK4490_obligatorisk_oppgave_1.pdf (4 pages, 181942 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream
