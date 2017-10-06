@@ -55,14 +55,15 @@ mens nullpunktene finnes med uttrykket
 \[s = -\frac{1}{T_D}\]
 
 Ved å sette inn for \(T_M = 2\) og \(T_D = 1\) får vi til slutt et nullpunkt i \(s = -1\) og to poler i
-\[s = \frac{-(\frac{1}{K} + 1) \pm \sqrt{(\frac{1}{K} + 1)^2 - 4\frac{2}{K}}}{2\frac{2}{K}}\]
+\[s = \frac{-(\frac{1}{K} + 1) \pm \sqrt{(\frac{1}{K} + 1)^2 - 4\frac{2}{K}}}{2\frac{2}{K}} = \frac{-(1+K)}{4}\pm\frac{\sqrt{(1+K)^2-8K}}{4}\]
+Polene vil være negative for alle 
 
 \begin{figure}[!htb]
 \includegraphics[height=10cm]{illustrations/oppg1e_illu}
 \caption{Locusplot av \(H_C\)}
 \end{figure}
 
-Med \(K \approx 0.17\), så er systemet 
+Systemet er stabilt for alle \(K > 0\) og vil aldri begynne å oscillere.
 
 \section{}
 Et system kan verifiseres som stabilt for en kandidatfunksjon \(V(x,y)\) hvis
@@ -190,6 +191,10 @@ hvor \(\tilde{q} = q_d - q\).
 Setter y inn i uttrykket for \(u\) og får
 \[u = B(q)(\ddot{q_d} + K_D\dot{\tilde{q}} + K_P\tilde{q}) + C(q, \dot{q})\dot{q}+F_v\dot{q} + g(q)\]
 \subsection{ }
+\begin{figure}[H]
+\includegraphics[height=7.5cm]{illustrations/oppg3e_illu1}
+\caption{Blokkskjema for invers dynamikkontroller.}
+\end{figure}
 \subsection{ }
 \subsection{ }
 \subsection{ }
