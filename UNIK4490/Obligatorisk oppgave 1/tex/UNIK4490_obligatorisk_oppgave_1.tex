@@ -183,7 +183,7 @@ hvor \(n(q, \dot{q}) = C(q, \dot{q})\dot{q}+F_v\dot{q} + g(q)\). Målet er å en
 Representerer \(y\) med
 \[y = -K_Pq -K_D\dot{q} + r\]
 og setter
-\[r = \ddot{q_d} + K_D\dot{q_d} + K_Pq_d\]
+\[r = \ddot{q}_d + K_D\dot{q}_d + K_Pq_d\]
 Setter representasjonen av \(r\) inn i \(y\) og får
 \[y = \ddot{q_d} + K_D\dot{\tilde{q}} + K_P\tilde{q}\]
 hvor \(\tilde{q} = q_d - q\).
@@ -191,11 +191,92 @@ hvor \(\tilde{q} = q_d - q\).
 Setter y inn i uttrykket for \(u\) og får
 \[u = B(q)(\ddot{q_d} + K_D\dot{\tilde{q}} + K_P\tilde{q}) + C(q, \dot{q})\dot{q}+F_v\dot{q} + g(q)\]
 \subsection{ }
+Blokkskjema for invers dynamikkontroller gis i figur 8.
 \begin{figure}[H]
 \includegraphics[height=7.5cm]{illustrations/oppg3e_illu1}
-\caption{Blokkskjema for invers dynamikkontroller.}
+\caption{Blokkskjema for invers dynamikkontroller. \(q_d\) ble generert som et sinus-signal, mens \(\dot{q}_d\) ble generert som den deriverte av sinus-signalet. \(\ddot{q}_d\) ble generert som eget signal på samme måte som \(q_d\).}
 \end{figure}
 \subsection{ }
+\begin{itemize}
+\item For \(f = 0.5\) Hz:
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu1}
+\caption{\(q_1\) følger pådraget relativt godt. Det er et lite avvik i oppstarten på ca 0.1.}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu2}
+\caption{\(q_2\) følger pådraget på samme måte som \(q_1\).}
+\end{figure}
+\item For \(f = 1.0\) Hz:
+
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu3}
+\caption{Ved 1,0 Hz ses det et tydeligere avvik i oppstarten. Avviket i amplituden er på ca 0.6.}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu4}
+\caption{\(q_2\) følger pådraget på samme måte som \(q_1\).}
+\end{figure}
+
+\item For \(f = 2.0\) Hz:
+
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu5}
+\caption{Systemet får større og større avvik i oppstarten av systemet. Avviket er på ca 1.}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3f_illu6}
+\caption{\(q_2\) følger pådraget på samme måte som \(q_1\).}
+\end{figure}
+\end{itemize}
+Det ses at avviket øker med frekvensen i pådraget. Dempningen \(\zeta\) og den udempede resonansfrekvensen \(\omega_n\) gis av \(K_P\) og \(K_D\):
+
+\[K_P = \begin{bmatrix}
+\omega_{n1}^2 & 0 \\ 0 & \omega_{n2}
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+25 & 0 \\ 0 & 25 
+\end{bmatrix}
+=
+\begin{bmatrix}
+5^2 & 0 \\ 0 & 5^2
+\end{bmatrix}\]
+
+\[K_D = \begin{bmatrix}
+2\zeta_1\omega_{n1} & 0 \\ 0 & 2\zeta_1\omega_{n2}
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+5 & 0 \\ 0 & 5 
+\end{bmatrix}
+\]
+Dette gir \(\zeta_1 = \zeta_2 = 0.5\). Et system er underdempet når \(0 < \zeta < 1\). Derfor er dette systemet underdempet. 
 \subsection{ }
+Et kritisk dempet system har \(\zeta = 1\). Da må \(K_D\) justeres:
+\[K_D = \begin{bmatrix}
+2\zeta_1\omega_{n1} & 0 \\ 0 & 2\zeta_1\omega_{n2}
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+2 \cdot 1 \cdot 5 & 0 \\ 0 & 2 \cdot 1 \cdot 5 
+\end{bmatrix}
+= 
+\begin{bmatrix}
+10 & 0 \\ 0 & 10 
+\end{bmatrix}
+\]
+Figur 15 og figur 16 viser plot av simulering med nye verdier for \(K_D\).
+
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3g_illu1}
+\caption{Responsen til \(q_1\). Responsen er forbedret.}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[height=7cm]{illustrations/oppg3g_illu2}
+\caption{Viser samme resultat som for \(q_1\).}
+\end{figure}
+
 \subsection{ }
 \end{document}
