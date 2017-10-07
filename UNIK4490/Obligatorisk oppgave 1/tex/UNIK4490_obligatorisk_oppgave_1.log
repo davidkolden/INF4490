@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  7 OCT 2017 00:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  7 OCT 2017 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,150 +559,150 @@ Overfull \hbox (52.95857pt too wide) in paragraph at lines 46--47
  []
 
 [2 <./illustrations/oppg1d_illu.JPG>]
-<illustrations/oppg1e_illu.JPG, id=21, 562.1pt x 421.575pt>
+<illustrations/oppg1e_illu.JPG, id=21, 1927.2pt x 919.435pt>
 File: illustrations/oppg1e_illu.JPG Graphic file (type jpg)
 
 <use illustrations/oppg1e_illu.JPG>
-Package pdftex.def Info: illustrations/oppg1e_illu.JPG used on input line 62.
-(pdftex.def)             Requested size: 379.3754pt x 284.52756pt.
+Package pdftex.def Info: illustrations/oppg1e_illu.JPG used on input line 63.
+(pdftex.def)             Requested size: 506.91212pt x 241.84842pt.
 
-Overfull \hbox (34.3754pt too wide) in paragraph at lines 62--63
-[][] 
+Overfull \hbox (107.22884pt too wide) in paragraph at lines 62--64
+[]  [] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 71.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 70.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 70.
  [3 <./illustrations/oppg1e_illu.JPG>] [4]
-Overfull \hbox (114.63107pt too wide) detected at line 153
+Overfull \hbox (114.63107pt too wide) detected at line 152
 \OML/cmm/m/it/10 u \OT1/cmr/m/n/10 = [] [] \OMS/cmsy/m/n/10 ^^@ [] [] \OT1/cmr/
 m/n/10 + [] 
  []
 
-<illustrations/oppg3b_illu1.JPG, id=28, 649.82774pt x 357.7365pt>
+<illustrations/oppg3b_illu1.JPG, id=29, 649.82774pt x 357.7365pt>
 File: illustrations/oppg3b_illu1.JPG Graphic file (type jpg)
 
 <use illustrations/oppg3b_illu1.JPG>
-Package pdftex.def Info: illustrations/oppg3b_illu1.JPG used on input line 157.
+Package pdftex.def Info: illustrations/oppg3b_illu1.JPG used on input line 156.
 
 (pdftex.def)             Requested size: 310.09923pt x 170.71652pt.
  [5]
-<illustrations/oppg3b_illu2.JPG, id=33, 536.60475pt x 442.65375pt>
+<illustrations/oppg3b_illu2.JPG, id=34, 536.60475pt x 442.65375pt>
 File: illustrations/oppg3b_illu2.JPG Graphic file (type jpg)
 
 <use illustrations/oppg3b_illu2.JPG>
-Package pdftex.def Info: illustrations/oppg3b_illu2.JPG used on input line 162.
+Package pdftex.def Info: illustrations/oppg3b_illu2.JPG used on input line 161.
 
 (pdftex.def)             Requested size: 344.93243pt x 284.52756pt.
 
-<illustrations/oppg3c_illu1.JPG, id=34, 519.1395pt x 385.44pt>
+<illustrations/oppg3c_illu1.JPG, id=35, 519.1395pt x 385.44pt>
 File: illustrations/oppg3c_illu1.JPG Graphic file (type jpg)
 
 <use illustrations/oppg3c_illu1.JPG>
-Package pdftex.def Info: illustrations/oppg3c_illu1.JPG used on input line 170.
+Package pdftex.def Info: illustrations/oppg3c_illu1.JPG used on input line 169.
 
 (pdftex.def)             Requested size: 275.91891pt x 204.85974pt.
  [6 <./illustrations/oppg3b_illu1.JPG> <./illustrations/oppg3b_illu2.JPG>]
-<illustrations/oppg3c_illu2.JPG, id=38, 520.344pt x 385.44pt>
+<illustrations/oppg3c_illu2.JPG, id=39, 520.344pt x 385.44pt>
 File: illustrations/oppg3c_illu2.JPG Graphic file (type jpg)
 
 <use illustrations/oppg3c_illu2.JPG>
-Package pdftex.def Info: illustrations/oppg3c_illu2.JPG used on input line 175.
+Package pdftex.def Info: illustrations/oppg3c_illu2.JPG used on input line 174.
 
 (pdftex.def)             Requested size: 276.5591pt x 204.85974pt.
  [7 <./illustrations/oppg3c_illu1.JPG> <./illustrations/oppg3c_illu2.JPG>]
-<illustrations/oppg3e_illu1.JPG, id=43, 963.6pt x 490.83376pt>
+<illustrations/oppg3e_illu1.JPG, id=44, 963.6pt x 490.83376pt>
 File: illustrations/oppg3e_illu1.JPG Graphic file (type jpg)
 
 <use illustrations/oppg3e_illu1.JPG>
-Package pdftex.def Info: illustrations/oppg3e_illu1.JPG used on input line 196.
+Package pdftex.def Info: illustrations/oppg3e_illu1.JPG used on input line 195.
 
 (pdftex.def)             Requested size: 418.92737pt x 213.39566pt.
 
-Overfull \hbox (73.92737pt too wide) in paragraph at lines 196--197
+Overfull \hbox (73.92737pt too wide) in paragraph at lines 195--196
 [][] 
  []
 
-<illustrations/oppg3f_illu1.jpg, id=44, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu1.jpg, id=45, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu1.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu1.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu1.jpg used on input line 203.
+Package pdftex.def Info: illustrations/oppg3f_illu1.jpg used on input line 202.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [8 <./illustrations/oppg3e_illu1.JPG>]
-<illustrations/oppg3f_illu2.jpg, id=48, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu2.jpg, id=49, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu2.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu2.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu2.jpg used on input line 207.
+Package pdftex.def Info: illustrations/oppg3f_illu2.jpg used on input line 206.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
 
-<illustrations/oppg3f_illu3.jpg, id=49, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu3.jpg, id=50, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu3.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu3.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu3.jpg used on input line 213.
+Package pdftex.def Info: illustrations/oppg3f_illu3.jpg used on input line 212.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [9 <./illustrations/oppg3f_illu1.jpg> <./illustrations/oppg3f_illu2.jpg>]
-<illustrations/oppg3f_illu4.jpg, id=53, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu4.jpg, id=54, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu4.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu4.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu4.jpg used on input line 217.
+Package pdftex.def Info: illustrations/oppg3f_illu4.jpg used on input line 216.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [10 <./illustrations/oppg3f_illu3.jpg> <./illustrations/oppg3f_illu4.jpg>]
-<illustrations/oppg3f_illu5.jpg, id=57, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu5.jpg, id=58, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu5.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu5.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu5.jpg used on input line 225.
+Package pdftex.def Info: illustrations/oppg3f_illu5.jpg used on input line 224.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
 
-<illustrations/oppg3f_illu6.jpg, id=58, 693.59125pt x 513.92pt>
+<illustrations/oppg3f_illu6.jpg, id=59, 693.59125pt x 513.92pt>
 File: illustrations/oppg3f_illu6.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3f_illu6.jpg>
-Package pdftex.def Info: illustrations/oppg3f_illu6.jpg used on input line 229.
+Package pdftex.def Info: illustrations/oppg3f_illu6.jpg used on input line 228.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [11 <./illustrations/oppg3f_illu5.jpg> <./illustrations/oppg3f_illu6.jpg>]
-<illustrations/oppg3g_illu1.jpg, id=62, 693.59125pt x 513.92pt>
+<illustrations/oppg3g_illu1.jpg, id=63, 693.59125pt x 513.92pt>
 File: illustrations/oppg3g_illu1.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3g_illu1.jpg>
-Package pdftex.def Info: illustrations/oppg3g_illu1.jpg used on input line 273.
+Package pdftex.def Info: illustrations/oppg3g_illu1.jpg used on input line 272.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
 
-<illustrations/oppg3g_illu2.jpg, id=63, 693.59125pt x 513.92pt>
+<illustrations/oppg3g_illu2.jpg, id=64, 693.59125pt x 513.92pt>
 File: illustrations/oppg3g_illu2.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3g_illu2.jpg>
-Package pdftex.def Info: illustrations/oppg3g_illu2.jpg used on input line 278.
+Package pdftex.def Info: illustrations/oppg3g_illu2.jpg used on input line 277.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [12 <./illustrations/oppg3g_illu1.jpg>]
-<illustrations/oppg3h_illu1.jpg, id=67, 693.59125pt x 513.92pt>
+<illustrations/oppg3h_illu1.jpg, id=68, 693.59125pt x 513.92pt>
 File: illustrations/oppg3h_illu1.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3h_illu1.jpg>
-Package pdftex.def Info: illustrations/oppg3h_illu1.jpg used on input line 284.
+Package pdftex.def Info: illustrations/oppg3h_illu1.jpg used on input line 283.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
 
-<illustrations/oppg3h_illu2.jpg, id=68, 693.59125pt x 513.92pt>
+<illustrations/oppg3h_illu2.jpg, id=69, 693.59125pt x 513.92pt>
 File: illustrations/oppg3h_illu2.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3h_illu2.jpg>
-Package pdftex.def Info: illustrations/oppg3h_illu2.jpg used on input line 289.
+Package pdftex.def Info: illustrations/oppg3h_illu2.jpg used on input line 288.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
  [13 <./illustrations/oppg3g_illu2.jpg> <./illustrations/oppg3h_illu1.jpg>] [14
@@ -726,12 +726,13 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on UNIK4490_obligatorisk_oppgave_1.pdf (14 pages, 845411 bytes).
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on UNIK4490_obligatorisk_oppgave_1.pdf (14 pages, 936217 bytes).
 
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
