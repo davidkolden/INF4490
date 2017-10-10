@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  7 OCT 2017 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.9.14)  10 OCT 2017 12:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -694,20 +694,19 @@ Package pdftex.def Info: illustrations/oppg3g_illu2.jpg used on input line 277.
 File: illustrations/oppg3h_illu1.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3h_illu1.jpg>
-Package pdftex.def Info: illustrations/oppg3h_illu1.jpg used on input line 283.
+Package pdftex.def Info: illustrations/oppg3h_illu1.jpg used on input line 284.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
-
-<illustrations/oppg3h_illu2.jpg, id=69, 693.59125pt x 513.92pt>
+ [13 <./illustrations/oppg3g_illu2.jpg>]
+<illustrations/oppg3h_illu2.jpg, id=73, 693.59125pt x 513.92pt>
 File: illustrations/oppg3h_illu2.jpg Graphic file (type jpg)
 
 <use illustrations/oppg3h_illu2.jpg>
-Package pdftex.def Info: illustrations/oppg3h_illu2.jpg used on input line 288.
+Package pdftex.def Info: illustrations/oppg3h_illu2.jpg used on input line 289.
 
 (pdftex.def)             Requested size: 268.80617pt x 199.16928pt.
- [13 <./illustrations/oppg3g_illu2.jpg> <./illustrations/oppg3h_illu1.jpg>] [14
- <./illustrations/oppg3h_illu2.jpg>]
-(./UNIK4490_obligatorisk_oppgave_1.aux) ) 
+ [14 <./illustrations/oppg3h_illu1.jpg> <./illustrations/oppg3h_illu2.jpg>] (./
+UNIK4490_obligatorisk_oppgave_1.aux) ) 
 Here is how much of TeX's memory you used:
  3051 strings out of 493013
  40818 string characters out of 6135682
@@ -715,20 +714,20 @@ Here is how much of TeX's memory you used:
  6523 multiletter control sequences out of 15000+600000
  9023 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,9n,25p,513b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on UNIK4490_obligatorisk_oppgave_1.pdf (14 pages, 936253 bytes).
+ 39i,9n,25p,568b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on UNIK4490_obligatorisk_oppgave_1.pdf (14 pages, 937808 bytes).
 
 PDF statistics:
  116 PDF objects out of 1000 (max. 8388607)

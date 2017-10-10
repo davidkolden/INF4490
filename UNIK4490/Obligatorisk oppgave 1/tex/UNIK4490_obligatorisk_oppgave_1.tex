@@ -279,6 +279,7 @@ Figur 15 og figur 16 viser plot av simulering med nye verdier for \(K_D\).
 \end{figure}
 
 \subsection{ }
+Har at \(\tilde{B} = \hat{B} - B\) og \(\tilde{n} = \hat{n} - n\). Som sagt i oppgave \(3d\), så er målet med kontrolleren å få \(\ddot{q} = y\), men siden vi har unøyaktigheter i den matematiske modellen av robotarmen i kontrolleren, så får vi en feil \(\eta\) som legges til, og vi ender opp med \(\ddot{q} = y + \eta\). I vårt eksempel er \(\hat{B} = 0.90B\) og \(\hat{n} = 0.95n\). Dette gjør at signalet aldri når opp til settpunkt, og differansen blir større jo mindre \(\hat{B}\) er i forhold til \(B\).
 \begin{figure}[H]
 \includegraphics[height=7cm]{illustrations/oppg3h_illu1}
 \caption{.}
