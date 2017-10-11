@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\author{David Kolden, davidko}
+
+\title{UNIK 4950 - Mandatory assignment 1}
+\begin{document}
+\maketitle
+\section{Question 1}
+\subsection{ }
+\textit{Why is it difficult to explain cooperation in the one-shot PD?}
+
+In the one-shot PD the rational choice to make is to defect because it is the best response to all the choices your 'opponent' makes. If the PD-game is played once, and both players know this, there are no chances that your opponent will punish you by defecting the next time you play, so you might as well make a choice you cannot regret. The choices of both players defecting is a Nash equilibrium, so both players know that defecting is the best choice for both, making the choice of cooperation irrational.
+
+There is also 'more at stakes' when the game is only one round. Ending up with a utility of 0 is a lot worse than ending up with a utility of 2, making the choice of cooperation rather risky.
+
+\subsection{ }
+\textit{Discuss how the indefinite IPD can explain how agents can choose to cooperate as a rational
+strategy.}
+
+Considering that participants in a game of infinite IPD wants to maximize their utility, the best opponent to play against would be one that cooperates every round, even though you defect. Should you, however, be faced with an opponents who reacts to the choice you made the previous round, he or she might punish you for defecting by defecting themself the next round, making your overall utility decrease. With the focus on maximizing utility, the rational choice for both players would be to find a way to cooperate.
+
+Since the game is played with infinite rounds, the cost of getting the 'suckers pay-off' is smaller compared to the one-shot PD because the loss of utility is distributed among infinite rounds, making it easier to propose cooperation by choosing to cooperate a round or two. If your opponent also chooses to cooperate, you have managed to build up a 'trust', and you should keep cooperating the whole game through because this increases both of your overall utility. Choosing to suddenly defect when you are on a 'cooperation-roll' is irrational.
+
+\subsection{ }
+\textit{What happens if the IPD is played in a finite set of rounds (instead of indefinitely)?}
+
+If a game of IPD is played with \(n\) rounds, the rational thing to do is to make a strategy for the whole game. When looking at round \(n\), it can be seen that the risk of your opponent punishing you for defecting is gone, since there are no round \(n+1\). This makes round \(n\) play as a one-shot PD game, dividing the game into \(n-1\) rounds of IPD plus a game of PD. However, the same logic can be applied to the IPD with \(n-1\) rounds, eventually turning a game of \(n\) rounds of IPD, to \(n\) \textit{games} of PD, applying the same logic to cooperation in each game as in 1.a. This is called backward induction. Cooperation is no longer a rational choice.
+
+\subsection{ }
+\textit{How is the IPD affected if there is always a probability of one more round?}
+
+If there is a probability that the players would meet in another round of PD in the future, the game will play like described in 1.b. The 'fear' of being punished for defecting in the future, and the urge to maximize utility makes cooperation a rational choice.
+
+\section{Question 2}
+\subsection{ }
+\textit{There are many strategies for playing the IPD 2-player game. Some of the most well-known are
+All-C, All-D, Tit-For-Tat, Random, Tester and Joss. Explain these strategies.}
+
+\begin{itemize}
+\item \textbf{All-C:} Always cooperate, no matter what your opponent does.
+\item \textbf{All-D:} Always defect, no matter what your opponent does.
+\item \textbf{Tit-For-Tat:} Cooperate the first round. For round \(n > 1\), do what your opponent played in round \(n-1\).
+\item \textbf{Random:} Select defect or cooperation at random.
+\item \textbf{Tester:} Tests if the opponent punishes defection by defecting the first round. If the opponent choose to punish by defecting back the next round, the Tester will play Tit-For-Tat the next rounds. If the opponent do not punish defection, it will cooperate for two rounds and then defect again.
+\item \textbf{Joss:} Tit-For-Tat, but with a 10\% chance of choosing to defect instead of cooperate.
+\end{itemize}
+
+\subsection{ }
+\textit{Assuming an N repeated IPD, calculate the average expected utility of each strategy in pairwise
+competition with all the other strategies. What is reasonable size of N? Make a table presenting
+our results and discuss your findings.}
+
+\begin{table}[h!]
+\centering
+ \begin{tabular}{|| c || c | c | c | c | c | c ||} 
+ \hline
+  & All-C & All-D & Tit-For-Tat & Random & Tester & Joss \\ [2ex] 
+ \hline\hline
+ All-C & \(3N\) &  &  & & & \\ 
+ \hline
+ All-D &  0 & \(2N\) &  & & & \\
+ \hline
+ Tit-For-Tat &  &  &  & & & \\
+ \hline
+ Random &  &  &  & & & \\
+ \hline
+ Tester &  &  &  & & & \\
+ \hline
+ Joss  & & & & & &  \\[1ex] 
+ \hline
+ \end{tabular}
+ \caption{ }
+ \end{table}
+
+\subsection{ }
+\textit{What happens if we introduce noise in the system (i.e. sometimes the agents misperceive the environment and accidently play \(CC\) instead of \(DD\) and vice versa)? Win-Stay, Loose-Shift is a strategy especially developed for noisy environment. Assess how this strategy is performing in this stochastic system. What is reasonable size of N now?}
+
+
+\section{Question 3}
+\subsection{ }
+\textit{Let us now turn to spatial multi-player IPD. Why are spatial games interesting to study in terms
+of non-cooperative game theory?}
+
+\subsection{ }
+\textit{In the figure below a payoff-scheme of one spatial agent (gray) is depicted. Explain how the
+payoffs for the spatially distributed agents are calculated using the PD payoffs previously
+mentioned. Also, explain how an agent determines its strategy in the next round assuming only \(CC\)
+and \(DD\) is available.}
+
+\subsection{ }
+\textit{Simulate a 100x100 agent spatial game using the PD payoffs. You can assume that the spatial
+area is wrapped around the edges. Do you need to alter your payoffs in order to reproduce
+Nowak? Comment on your findings. Plot a graph showing the simulated time dependency of
+number of cooperators when initial population is 50% cooperators randomly (uniform) distributed
+over the spatial game board. Vary the initial population in subsequent simulations and discuss
+your results.}
+
+\subsection{ }
+\textit{Now, try a 100% cooperator initial population and inject one defector. What happens? Discuss
+the result.}
+
+\subsection{ }
+\textit{Try the same with 100% defectors in the initial population but this time inject one cooperator.
+What happens? How many cooperators and in what configuration must they be injected to
+produce a viable population of cooperators?}
+
+\subsection{ }
+\textit{In the same manner as in the 2-player IPD, introduce noise in the system. What happens? Vary
+the noise component and discuss the results.}
+
+
+\section{Question 4}
+\textit{In light of these game results, how well do you think we are able to explain cooperation in real systems?}
+
+\end{document}
